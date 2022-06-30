@@ -1,27 +1,22 @@
 import { Request, Response } from 'express';
-import { UserRepository } from "../../../2-application/users"
+import { container } from '../../../../branDI/container';
+import { TOKENS } from '../../../../branDI/tokens';
 import { CreateUserDto } from "../../../2-application/users/dtos/createUserDto";
-import { UserGateway } from '../../../4-infrastructure/db/mongoDB/implementations/UserGateway';
-
 
 const signIn = (req: Request, res: Response) => {
-    try{
+
+    const userRepository = container.get(TOKENS.userRepository);
+    const createUserDto: CreateUserDto = {
+        name: req.body.name,
+        nickName: req.body.nickName,
+        email: req.body.email,
+        password: req.body.password
+    };
     
-        const userRepository = new UserRepository(new UserGateway());
-        const createUserDto: CreateUserDto = {
-            name: req.body.name,
-            nickName: req.body.nickName,
-            email: req.body.email,
-            password: req.body.password
-        };
-        
-        userRepository.createUser(createUserDto).subscribe(response => {
-            res.send(response)
-        });
-    }catch(error: any){
-        const userRepository =  new UserRepository(new UserGateway());
-    }
-    
+    userRepository.createUser(createUserDto).subscribe(response => {
+        res.send(response)
+    });
+
 }
 const router = {
     signIn
