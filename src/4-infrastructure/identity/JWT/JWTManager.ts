@@ -7,11 +7,13 @@ dotenv.config();
 export class JWTManager {
     public static sign(email: string, name: string){
         const jwtKey: any = process.env.JWT_KEY;
+        const jwtTokenDuration: any = process.env.TOKEN_DURATION;
+        
         return jwt.sign({
                     email: email,
                     name: name,
                 },
-                jwtKey,{"expiresIn":"3600s"});
+                jwtKey,{'expiresIn':jwtTokenDuration});
     }
 
     public static encrypt(passwordCipher: string): string {

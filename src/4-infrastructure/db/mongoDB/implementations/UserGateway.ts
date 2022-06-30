@@ -25,7 +25,7 @@ export class UserGateway implements IUserGateway {
                     .then((user) => {
                         console.log(user);
                         var token= JWTManager.sign( user.email, user.name);
-                        subscriber.next({ token: token, expiresIn: '3600s' } as UserCreatedViewModel);
+                        subscriber.next({ token: token, expiresIn: process.env.TOKEN_DURATION } as UserCreatedViewModel);
                     })
                     .catch(err => {
                         console.log(err);
