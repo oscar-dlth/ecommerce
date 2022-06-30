@@ -7,9 +7,10 @@ import { ErrorResponseViewModel } from '../../../2-application/errorResponseView
 import { UserCreatedViewModel } from '../../../2-application/users/viewModels/userCreatedViewModel';
 import { UpdateUserDto } from '../../../2-application/users/dtos/updateUserDto';
 
-const signIn = (req: Request, res: Response) => {
-    const userCommands = container.get(TOKENS.userCommands);
+const userCommands = container.get(TOKENS.userCommands);
+const userQueries = container.get(TOKENS.userQueries);
 
+const signIn = (req: Request, res: Response) => {
     userCommands.createUser(req.body as CreateUserDto)
         .pipe(take(1))
         .subscribe({
@@ -23,9 +24,6 @@ const signIn = (req: Request, res: Response) => {
 }
 
 const getUsers = (req: Request, res: Response) => {
-
-    const userQueries = container.get(TOKENS.userQueries);
-
     userQueries.getUsers().subscribe({
         next: (response) => {
             res.send(response)
@@ -37,12 +35,9 @@ const getUsers = (req: Request, res: Response) => {
 }
 
 const getUserById = (req: Request, res: Response) => {
-
-    const userQueries = container.get(TOKENS.userQueries);
-
-    userQueries.getById( req.params.id ).subscribe({
+    userQueries.getById(req.params.id).subscribe({
         next: (response) => {
-                res.send(response)
+            res.send(response)
         },
         error: (error: ErrorResponseViewModel) => {
             res.status(500).json(error);
@@ -51,43 +46,34 @@ const getUserById = (req: Request, res: Response) => {
 }
 
 const createNewUser = (req: Request, res: Response) => {
-
-    const userCommands = container.get(TOKENS.userCommands);
-
-    userCommands.createNewUser( req.body as CreateUserDto ).subscribe({
+    userCommands.createNewUser(req.body as CreateUserDto).subscribe({
         next: (response) => {
             res.send(response)
         },
         error: (error: ErrorResponseViewModel) => {
-            res.status(500).json({error: error.message, status: 500 });
+            res.status(500).json({ error: error.message, status: 500 });
         }
     });
 }
 
 const updateUser = (req: Request, res: Response) => {
-
-    const userCommands = container.get(TOKENS.userCommands);
-
-    userCommands.updateUser( req.body as UpdateUserDto ).subscribe({
+    userCommands.updateUser(req.body as UpdateUserDto).subscribe({
         next: (response) => {
             res.send({ status: response })
         },
         error: (error: ErrorResponseViewModel) => {
-            res.status(500).json({error: error.message, status: 500 });
+            res.status(500).json({ error: error.message, status: 500 });
         }
     });
 }
 
 const deleteUser = (req: Request, res: Response) => {
-
-    const userCommands = container.get(TOKENS.userCommands);
-
-    userCommands.deleteUser( req.params.id ).subscribe({
+    userCommands.deleteUser(req.params.id).subscribe({
         next: (response) => {
             res.send({ status: response })
         },
         error: (error: ErrorResponseViewModel) => {
-            res.status(500).json({error: error.message, status: 500 });
+            res.status(500).json({ error: error.message, status: 500 });
         }
     });
 }
