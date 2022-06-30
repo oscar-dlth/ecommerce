@@ -2,22 +2,26 @@ import { Request, Response } from 'express';
 import { container } from '../../../../branDI/container';
 import { TOKENS } from '../../../../branDI/tokens';
 import { CreateUserDto } from "../../../2-application/users/dtos/createUserDto";
+import { take } from 'rxjs/operators'
+import { ErrorResponseViewModel } from '../../../2-application/errorResponseViewModel';
+import { UserCreatedViewModel } from '../../../2-application/users/viewModels/userCreatedViewModel';
 
 const signIn = (req: Request, res: Response) => {
 
-    const userRepository = container.get(TOKENS.userRepository);
-    const createUserDto: CreateUserDto = {
-        name: req.body.name,
-        nickName: req.body.nickName,
-        email: req.body.email,
-        password: req.body.password
-    };
-    
-    userRepository.createUser(createUserDto).subscribe(response => {
-        res.send(response)
-    });
+    const userRepository = container.get(TOKENS.userUseCases);
 
+    userRepository.createUser(req.body as CreateUserDto)
+    .pipe(take(1))
+        .subscribe({
+            next: (response: UserCreatedViewModel) => {
+                res.send(response)
+            },
+            error: (error: ErrorResponseViewModel) => {
+                res.status(error.status).json(error);
+            }
+        });
 }
+
 const router = {
     signIn
 };
