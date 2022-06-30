@@ -1,7 +1,10 @@
-import express from 'express'
-import router from './user';
+import userRouter from './user';
 
-const userRouter  = express.Router()
-  .post('/signup', router.signIn);
+const express =  require('express');
 
-export default userRouter;
+const router = express.Router()
+
+router
+  .post('/signup', userRouter.signIn);
+
+export default router;

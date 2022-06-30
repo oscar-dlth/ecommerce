@@ -1,15 +1,14 @@
-import express, {Express, NextFunction, Response, Request } from "express"
-import bodyParser from 'body-parser'
+import {Express, NextFunction, Response, Request } from "express"
 import routes from './routes'
-import dotenv from 'dotenv';
+const dotenv = require('dotenv');
+const express = require('express');
 
 
 dotenv.config();
 const app: Express = express();
 
 // bodyparser
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.use(routes)
 

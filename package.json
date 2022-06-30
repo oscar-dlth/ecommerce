@@ -4,9 +4,9 @@
   "description": "stories backend using clean arquitecture",
   "main": "index.js",
   "scripts": {
-    "build": "npx tsc src/5-presentation/webapi/index.ts",
+    "build": "npx tsc",
     "start": "node dist/index.js",
-    "dev": "concurrently \"npx tsc --watch src/5-presentation/webapi\" \"nodemon -q dist/index.js\""
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
   },
   "repository": {
     "type": "git",
