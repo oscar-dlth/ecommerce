@@ -1,5 +1,5 @@
 import { Observable } from "rxjs";
-import { User } from "../1-domain/entities";
+import { User } from "../../1-domain/entities";
 
 export interface IUserRepository {
     get(): Observable<Array<User>>;

@@ -3,7 +3,7 @@ import { Observable } from "rxjs";
 import { TOKENS } from "../../../branDI/tokens";
 import { User } from "../../1-domain/entities";
 import { IUserGateway } from "../../3.gateways/userGateway";
-import { IUserRepository } from "../../3.gateways/userRepository";
+import { IUserRepository } from "../../3.gateways/repositories/userRepository";
 import { CreateUserDto } from "./dtos/createUserDto";
 import { UpdateUserDto } from "./dtos/updateUserDto";
 import { UserCreatedViewModel } from "./viewModels/userCreatedViewModel";
