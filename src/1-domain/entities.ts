@@ -40,7 +40,7 @@ export class User {
     nickName!: string;
     email!: string;
     password!: string;
-    stories!: Array<Story>;
+    stories?: Array<Story>;
 
     constructor(object: any){
         Object.assign(this, object);
