@@ -1,6 +1,8 @@
-import { Schema, model, connect, Types } from 'mongoose';
+import { model, Types } from 'mongoose';
 import { User } from '../../../../1-domain/entities';
+import mongoose from '../conection'
 
+const Schema = mongoose.Schema
 const userSchema = new Schema<User>({
     _id : Types.ObjectId,
     name :  { 
