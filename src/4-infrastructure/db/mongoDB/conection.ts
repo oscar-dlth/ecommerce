@@ -14,7 +14,7 @@ if (env === 'production') {
   const password = process.env.MONGO_PASSWORD
   mongoose.connect('mongodb+srv://'+username+':'+ password +'@cluster0.fl0cv.mongodb.net/stories?retryWrites=true&w=majority')
 } else {
-  mongoose.connect('mongodb://localhost:27017/clean_node'), {
+  mongoose.connect('mongodb://localhost:27017/stories'), {
     useMongoClient: true,
   };
 }
