@@ -6,6 +6,7 @@ import { IUserGateway } from "../../../../3.gateways/userGateway";
 import { JWTManager } from "../../../identity/JWT/JWTManager";
 import { Types } from 'mongoose';
 import UserModel from "../models/user";
+import { injected } from "brandi";
 
 export class UserGateway implements IUserGateway {
     signIn(userDto: CreateUserDto): Observable<UserCreatedViewModel> {
@@ -24,8 +25,8 @@ export class UserGateway implements IUserGateway {
                     .save()
                     .then((user) => {
                         console.log(user);
-                        var token= JWTManager.sign( user.email, user.name);
-                        subscriber.next({ token: token, expiresIn: '3600s' } as UserCreatedViewModel);
+                        const [token, duration ] = JWTManager.sign( user.email, user.name);
+                        subscriber.next({ token: token, expiresIn: duration } as UserCreatedViewModel);
                     })
                     .catch(err => {
                         console.log(err);
@@ -56,3 +57,5 @@ export class UserGateway implements IUserGateway {
     }
     
 }
+
+injected(UserGateway);

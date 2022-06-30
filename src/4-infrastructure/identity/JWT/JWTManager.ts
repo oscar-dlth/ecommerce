@@ -5,13 +5,17 @@ import crypto from 'crypto';
 dotenv.config();
 
 export class JWTManager {
-    public static sign(email: string, name: string){
+    public static sign(email: string, name: string) : [ token: string, duration: string ]{
         const jwtKey: any = process.env.JWT_KEY;
-        return jwt.sign({
+        const jwtTokenDuration: any = process.env.TOKEN_DURATION;
+        
+        const token = jwt.sign({
                     email: email,
                     name: name,
                 },
-                jwtKey,{"expiresIn":"3600s"});
+                jwtKey,{'expiresIn':jwtTokenDuration});
+
+        return [ token, jwtTokenDuration ]
     }
 
     public static encrypt(passwordCipher: string): string {
