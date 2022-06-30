@@ -6,7 +6,9 @@ import { IUserGateway } from "../../../../3.gateways/userGateway";
 import { JWTManager } from "../../../identity/JWT/JWTManager";
 import { Types } from 'mongoose';
 import UserModel from "../models/user";
+import { Service } from "typedi";
 
+@Service()
 export class UserGateway implements IUserGateway {
     signIn(userDto: CreateUserDto): Observable<UserCreatedViewModel> {
         return new Observable<UserCreatedViewModel>( subscriber => {
