@@ -24,58 +24,68 @@ const signIn = (req: Request, res: Response) => {
 }
 
 const getUsers = (req: Request, res: Response) => {
-    userQueries.getUsers().subscribe({
-        next: (response) => {
-            res.send(response)
-        },
-        error: (error: ErrorResponseViewModel) => {
-            res.status(error.status).json(error);
-        }
-    });
+    userQueries.getUsers()
+        .pipe(take(1))
+        .subscribe({
+            next: (response) => {
+                res.send(response)
+            },
+            error: (error: ErrorResponseViewModel) => {
+                res.status(error.status).json(error);
+            }
+        });
 }
 
 const getUserById = (req: Request, res: Response) => {
-    userQueries.getById(req.params.id).subscribe({
-        next: (response) => {
-            res.send(response)
-        },
-        error: (error: ErrorResponseViewModel) => {
-            res.status(500).json(error);
-        }
-    });
+    userQueries.getById(req.params.id)
+        .pipe(take(1))
+        .subscribe({
+            next: (response) => {
+                res.send(response)
+            },
+            error: (error: ErrorResponseViewModel) => {
+                res.status(500).json(error);
+            }
+        });
 }
 
 const createNewUser = (req: Request, res: Response) => {
-    userCommands.createNewUser(req.body as CreateUserDto).subscribe({
-        next: (response) => {
-            res.send(response)
-        },
-        error: (error: ErrorResponseViewModel) => {
-            res.status(500).json({ error: error.message, status: 500 });
-        }
-    });
+    userCommands.createNewUser(req.body as CreateUserDto)
+        .pipe(take(1))
+        .subscribe({
+            next: (response) => {
+                res.send(response)
+            },
+            error: (error: ErrorResponseViewModel) => {
+                res.status(500).json({ error: error.message, status: 500 });
+            }
+        });
 }
 
 const updateUser = (req: Request, res: Response) => {
-    userCommands.updateUser(req.body as UpdateUserDto).subscribe({
-        next: (response) => {
-            res.send({ status: response })
-        },
-        error: (error: ErrorResponseViewModel) => {
-            res.status(500).json({ error: error.message, status: 500 });
-        }
-    });
+    userCommands.updateUser(req.body as UpdateUserDto)
+        .pipe(take(1))
+        .subscribe({
+            next: (response) => {
+                res.send({ status: response })
+            },
+            error: (error: ErrorResponseViewModel) => {
+                res.status(500).json({ error: error.message, status: 500 });
+            }
+        });
 }
 
 const deleteUser = (req: Request, res: Response) => {
-    userCommands.deleteUser(req.params.id).subscribe({
-        next: (response) => {
-            res.send({ status: response })
-        },
-        error: (error: ErrorResponseViewModel) => {
-            res.status(500).json({ error: error.message, status: 500 });
-        }
-    });
+    userCommands.deleteUser(req.params.id)
+        .pipe(take(1))
+        .subscribe({
+            next: (response) => {
+                res.send({ status: response })
+            },
+            error: (error: ErrorResponseViewModel) => {
+                res.status(500).json({ error: error.message, status: 500 });
+            }
+        });
 }
 
 const router = {
