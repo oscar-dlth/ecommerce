@@ -1,9 +1,9 @@
 import { token } from 'brandi';
-import { UserUseCases } from '../src/2-application/users/userUsesCases';
+import { UserCommands } from '../src/2-application/users/userCommands';
 import { IUserGateway } from '../src/3.gateways/userGateway';
 
 
 export const TOKENS = {
-  userUseCases: token<UserUseCases>('userUseCases'),
+  userCommands: token<UserCommands>('userCommands'),
   userGateway: token<IUserGateway>('userGateway'),
 };

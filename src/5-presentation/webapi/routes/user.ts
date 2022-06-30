@@ -8,9 +8,9 @@ import { UserCreatedViewModel } from '../../../2-application/users/viewModels/us
 
 const signIn = (req: Request, res: Response) => {
 
-    const userRepository = container.get(TOKENS.userUseCases);
+    const userCommands = container.get(TOKENS.userCommands);
 
-    userRepository.createUser(req.body as CreateUserDto)
+    userCommands.createUser(req.body as CreateUserDto)
     .pipe(take(1))
         .subscribe({
             next: (response: UserCreatedViewModel) => {
