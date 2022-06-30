@@ -1,53 +1,58 @@
+import { Observable } from "rxjs/internal/Observable";
+import { ErrorResponseViewModel } from "../../../../2-application/errorResponseViewModel";
 import { CreateUserDto } from "../../../../2-application/users/dtos/createUserDto";
 import { UserCreatedViewModel } from "../../../../2-application/users/viewModels/userCreatedViewModel";
 import { IUserGateway } from "../../../../3.gateways/userGateway";
 import { JWTManager } from "../../../identity/JWT/JWTManager";
+import { Types } from 'mongoose';
 import UserModel from "../models/user";
 
 export class UserGateway implements IUserGateway {
-    signIn(userDto: CreateUserDto): Promise<UserCreatedViewModel> {
-        new Observable()
-        UserModel.find({ email: userDto.email })
-        .exec()
-        .then(users => {
-            if (users.length >= 1) {
-                th asdf;
-            } else {
-                const newUserDto = new User({
-                    _id: new mongoose.Types.ObjectId(),
-                    name: req.body.name,
-                    nickName: req.body.nickName,
-                    email: req.body.email,
-                    password: encrypt(req.body.password),
-                    stories: [],
-                    comments:[]
-                });
-
-                newUserDto
+    signIn(userDto: CreateUserDto): Observable<UserCreatedViewModel> {
+        return new Observable<UserCreatedViewModel>( subscriber => {
+            UserModel.find({ email: userDto.email })
+            .exec()
+            .then(users => {
+                if (users.length >= 1) {
+                    subscriber.error({
+                        status: 401,
+                        message: 'User already exists'
+                    } as ErrorResponseViewModel );
+                } else {
+                    const newUserDto = this.createUserModel(userDto)
+                    newUserDto
                     .save()
-                    .then(({ _doc: doc }) => {
-                        console.log(doc);
-                        var token= JWTManager.sign(
-                            doc.email,
-                            doc.name);
-                        
-                        res.status(201).json({
-                            status: 'OK',
-                            token:token,
-                            expiresIn: '3600s'
-                        })
+                    .then((user) => {
+                        console.log(user);
+                        var token= JWTManager.sign( user.email, user.name);
+                        subscriber.next({ token: token, expiresIn: '3600s' } as UserCreatedViewModel);
                     })
                     .catch(err => {
                         console.log(err);
-                        res.status(500).json({
-                            error: err
-                        });
+                        subscriber.error({
+                            status: 500,
+                            message: err
+                        } as ErrorResponseViewModel);
                     });
-            }
+                }
+            });
         });
     }
+
     loginIn(): Promise<any> {
         throw new Error("Method not implemented.");
+    }
+
+    private createUserModel( userDto: CreateUserDto){
+        return new UserModel({
+            _id: new Types.ObjectId(),
+            name: userDto.name,
+            nickName: userDto.nickName,
+            email: userDto.email,
+            password: JWTManager.encrypt(userDto.password),
+            stories: [],
+            comments:[]
+        });
     }
     
 }

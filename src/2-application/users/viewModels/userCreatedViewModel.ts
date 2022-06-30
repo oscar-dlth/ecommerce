@@ -1,4 +1,4 @@
 export class UserCreatedViewModel {
-    userId!: string;
+    expiresIn!: string;
     token!: string;
 }
