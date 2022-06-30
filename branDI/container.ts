@@ -1,5 +1,5 @@
 import { Container } from 'brandi';
-import { UserRepository } from '../src/2-application/users';
+import { UserUseCases } from '../src/2-application/users/userUsesCases';
 import { UserGateway } from '../src/4-infrastructure/db/mongoDB/implementations/UserGateway';
 
 import { TOKENS } from './tokens';
@@ -12,6 +12,6 @@ container
   .inSingletonScope();
 
 container
-  .bind(TOKENS.userRepository)
-  .toInstance(UserRepository)
+  .bind(TOKENS.userUseCases)
+  .toInstance(UserUseCases)
   .inSingletonScope();

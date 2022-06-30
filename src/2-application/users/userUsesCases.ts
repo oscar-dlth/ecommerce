@@ -5,7 +5,7 @@ import { IUserGateway } from "../../3.gateways/userGateway";
 import { CreateUserDto } from "./dtos/createUserDto";
 import { UserCreatedViewModel } from "./viewModels/userCreatedViewModel";
 
-export class UserRepository {
+export class UserUseCases {
     constructor(private userGateway: IUserGateway){ }
 
     createUser(userDto: CreateUserDto): Observable<UserCreatedViewModel> {
@@ -13,4 +13,4 @@ export class UserRepository {
     }
 }
 
-injected(UserRepository, TOKENS.userGateway);
+injected(UserUseCases, TOKENS.userGateway);
