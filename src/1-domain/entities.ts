@@ -1,4 +1,4 @@
-export class Chapter {
+export class Chapter implements BaseModel{
     id!: string;
     title!: string;
     content!: string;
@@ -9,7 +9,7 @@ export class Chapter {
     }
 }
 
-export class Story{
+export class Story implements BaseModel{
     id!: string;
     title!: string;
     categoryId!: string;
@@ -22,7 +22,7 @@ export class Story{
     }
 }
 
-export class Comment{
+export class Comment implements BaseModel{
     id!: string;
     userId!: string;
     content!: string;
@@ -34,7 +34,7 @@ export class Comment{
     }
 }
 
-export class User {
+export class User implements BaseModel{
     id!: string;
     name!: string;
     nickName!: string;
@@ -45,4 +45,8 @@ export class User {
     constructor(object: any){
         Object.assign(this, object);
     }
+}
+
+export interface BaseModel{
+    id: string;
 }
