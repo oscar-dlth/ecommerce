@@ -9,6 +9,9 @@ export abstract class BaseRepository<T extends BaseModel> implements IBaseReposi
         this.mongoseModel =  this.getMongooseModel();
     }
 
+    abstract getMongooseModel(): Model<T>;
+    abstract getModelToInsert(newModel: T): any;
+    
     get(): Observable<T[]> {
         return new Observable(subscriber => {
             this.mongoseModel.find()
@@ -82,7 +85,4 @@ export abstract class BaseRepository<T extends BaseModel> implements IBaseReposi
                 });
         });
     }
-
-    abstract getMongooseModel(): Model<T>;
-    abstract getModelToInsert(newModel: T): any;
 }
