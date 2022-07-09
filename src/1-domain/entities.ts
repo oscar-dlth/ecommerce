@@ -35,7 +35,7 @@ export class Comment implements BaseModel{
 }
 
 export class User implements BaseModel{
-    id!: string;
+    id?: string;
     name!: string;
     nickName!: string;
     email!: string;
@@ -48,5 +48,5 @@ export class User implements BaseModel{
 }
 
 export interface BaseModel{
-    id: string;
+    id?: string;
 }

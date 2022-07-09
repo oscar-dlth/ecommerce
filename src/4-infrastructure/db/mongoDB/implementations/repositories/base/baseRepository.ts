@@ -12,9 +12,9 @@ export abstract class BaseRepository<T extends BaseModel> implements IBaseReposi
     abstract getMongooseModel(): Model<T>;
     abstract getModelToInsert(newModel: T): any;
     
-    get(): Observable<T[]> {
+    get(filter: any): Observable<T[]> {
         return new Observable(subscriber => {
-            this.mongoseModel.find()
+            this.mongoseModel.find(filter)
                 .exec()
                 .then(doc => {
                     subscriber.next(doc.map((item: any) => {
