@@ -1,24 +1,36 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { container } from '../../../../branDI/container';
 import { TOKENS } from '../../../../branDI/tokens';
 import { CreateUserDto } from "../../../2-application/users/dtos/createUserDto";
 import { take } from 'rxjs/operators'
-import { ErrorResponseViewModel } from '../../../2-application/errorResponseViewModel';
+import { ErrorResponseViewModel } from '../../../2-application/common/errorResponseViewModel';
 import { UserCreatedViewModel } from '../../../2-application/users/viewModels/userCreatedViewModel';
-import { UpdateUserDto } from '../../../2-application/users/dtos/updateUserDto';
+import { responseViewModel } from '../../../2-application/common/responseViewModel';
+import { UserViewModel } from '../../../2-application/users/viewModels/userViewModel';
 
 const userCommands = container.get(TOKENS.userCommands);
 const userQueries = container.get(TOKENS.userQueries);
 
-const signIn = (req: Request, res: Response) => {
-    userCommands.createUser(req.body as CreateUserDto)
+const signIn = (req: Request, res: Response, next: NextFunction) => {
+    userCommands.signin(req.body as CreateUserDto)
         .pipe(take(1))
         .subscribe({
             next: (response: UserCreatedViewModel) => {
-                res.send(response)
+                const responseData: responseViewModel<UserCreatedViewModel> = {
+                    status: 'OK',
+                    data: response
+                };
+                res.send(responseData)
             },
-            error: (error: ErrorResponseViewModel) => {
-                res.status(error.status).json(error);
+            error: (error) => {
+                const statusCode = error.code
+            
+                const responseError: ErrorResponseViewModel =  {
+                    status: 'Fail',
+                    message: error.message,
+                    code: statusCode
+                }
+                next(responseError);
             }
         });
 }
@@ -28,62 +40,44 @@ const getUsers = (req: Request, res: Response) => {
         .pipe(take(1))
         .subscribe({
             next: (response) => {
-                res.send(response)
+                const responseData: responseViewModel<UserViewModel[]> = {
+                    status: 'OK',
+                    data: response
+                };
+                res.send(responseData)
             },
-            error: (error: ErrorResponseViewModel) => {
-                res.status(error.status).json(error);
+            error: (error) => {
+                const statusCode = error.code | 500;
+                
+                const responseError: ErrorResponseViewModel =  {
+                    status: 'Fail',
+                    message: error.message,
+                    code: statusCode
+                }
+                res.status(statusCode).json(responseError);
             }
         });
 }
 
-const getUserById = (req: Request, res: Response) => {
+const getUserById = (req: Request, res: Response, next: NextFunction) => {
     userQueries.getById(req.params.id)
         .pipe(take(1))
         .subscribe({
             next: (response) => {
-                res.send(response)
+                const responseData: responseViewModel<UserViewModel | null> = {
+                    status: 'OK',
+                    data: response
+                };
+                res.send( responseData )
             },
-            error: (error: ErrorResponseViewModel) => {
-                res.status(500).json(error);
-            }
-        });
-}
-
-const createNewUser = (req: Request, res: Response) => {
-    userCommands.createNewUser(req.body as CreateUserDto)
-        .pipe(take(1))
-        .subscribe({
-            next: (response) => {
-                res.send(response)
-            },
-            error: (error: ErrorResponseViewModel) => {
-                res.status(500).json({ error: error.message, status: 500 });
-            }
-        });
-}
-
-const updateUser = (req: Request, res: Response) => {
-    userCommands.updateUser(req.body as UpdateUserDto)
-        .pipe(take(1))
-        .subscribe({
-            next: (response) => {
-                res.send({ status: response })
-            },
-            error: (error: ErrorResponseViewModel) => {
-                res.status(500).json({ error: error.message, status: 500 });
-            }
-        });
-}
-
-const deleteUser = (req: Request, res: Response) => {
-    userCommands.deleteUser(req.params.id)
-        .pipe(take(1))
-        .subscribe({
-            next: (response) => {
-                res.send({ status: response })
-            },
-            error: (error: ErrorResponseViewModel) => {
-                res.status(500).json({ error: error.message, status: 500 });
+            error: (error) => {
+                const statusCode = error.code;
+                const responseError: ErrorResponseViewModel =  {
+                    status: 'Fail',
+                    message: error.message,
+                    code: statusCode
+                }
+                next(responseError);
             }
         });
 }
@@ -91,10 +85,7 @@ const deleteUser = (req: Request, res: Response) => {
 const router = {
     signIn,
     getUsers,
-    getUserById,
-    createNewUser,
-    updateUser,
-    deleteUser
+    getUserById
 };
 
 export default router;

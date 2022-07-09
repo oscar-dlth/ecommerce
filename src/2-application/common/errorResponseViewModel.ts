@@ -1,4 +1,5 @@
 export class ErrorResponseViewModel{
-    status!: number;
+    code?: number;
+    status!: string;
     message!: string;
 }

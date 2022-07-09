@@ -1,5 +1,5 @@
 export class Chapter implements BaseModel{
-    id!: string;
+    _id!: string;
     title!: string;
     content!: string;
     imageId!: string;
@@ -10,7 +10,7 @@ export class Chapter implements BaseModel{
 }
 
 export class Story implements BaseModel{
-    id!: string;
+    _id!: string;
     title!: string;
     categoryId!: string;
     likes!: number;
@@ -23,7 +23,7 @@ export class Story implements BaseModel{
 }
 
 export class Comment implements BaseModel{
-    id!: string;
+    _id!: string;
     userId!: string;
     content!: string;
     date!: Date;
@@ -35,7 +35,7 @@ export class Comment implements BaseModel{
 }
 
 export class User implements BaseModel{
-    id!: string;
+    _id!: string;
     name!: string;
     nickName!: string;
     email!: string;
@@ -48,5 +48,5 @@ export class User implements BaseModel{
 }
 
 export interface BaseModel{
-    id: string;
+    _id: string;
 }

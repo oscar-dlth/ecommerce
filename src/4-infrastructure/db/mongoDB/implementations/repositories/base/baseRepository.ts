@@ -1,88 +1,56 @@
 import { Model } from "mongoose";
-import { Observable } from "rxjs";
+import {  from, map, Observable, of } from "rxjs";
 import { BaseModel } from "../../../../../../1-domain/entities";
 import { IBaseRepository } from "../../../../../../3.gateways/repositories/base/baseRepository";
 
 export abstract class BaseRepository<T extends BaseModel> implements IBaseRepository<T>{
-    private mongoseModel: Model<T,{},{}>;
-    constructor(){
-        this.mongoseModel =  this.getMongooseModel();
+    private mongoseModel: Model<T, {}, {}>;
+    constructor() {
+        this.mongoseModel = this.getMongooseModel();
     }
 
     abstract getMongooseModel(): Model<T>;
     abstract getModelToInsert(newModel: T): any;
-    
-    get(): Observable<T[]> {
-        return new Observable(subscriber => {
-            this.mongoseModel.find()
-                .exec()
-                .then(doc => {
-                    subscriber.next(doc.map((item: any) => {
-                        const model: T = (Object.assign({}, item._doc))
-                        return model;
-                    }));
-                }).catch(error => {
-                    subscriber.error(error);
+
+    get(filter: any): Observable<T[]> {
+        return from(this.mongoseModel.find(filter).exec())
+            .pipe(map(doc => {
+                return doc.map((item: any) => {
+                    const model: T = { ...item._doc }
+                    return model;
                 })
-        })
+            }));
     }
 
     getById(id: string): Observable<T | null> {
-        return new Observable(subscriber => {
-            this.mongoseModel.findById(id)
-                .exec()
-                .then((response: any) => {
-                    if (response) {
-                        const model: T = (Object.assign({}, response._doc))
-                        subscriber.next(model);
-                    } else {
-                        subscriber.next(null)
-                    }
-                }).catch(error => {
-                    subscriber.error(error);
-                })
-        })
+        return from(this.mongoseModel.findById(id)
+            .exec()).pipe(map((response: any) => {
+                let result = null;
+                if (response) {
+                    const model: T = (Object.assign({}, response._doc))
+                    result = model;
+                }
+                return result
+            }))
     }
 
     insert(entity: T): Observable<T> {
         const newUserDto = this.getModelToInsert(entity)
-        return new Observable(subscriber => {
-            newUserDto
-                .save()
-                .then((response: any) => {
-                    const model: T = (Object.assign({}, response._doc))
-                    subscriber.next(model);
-                })
-                .catch((error: any) =>
-                    subscriber.error(error)
-                );
-        })
+
+        return from(newUserDto
+            .save()).pipe(map((response: any) => {
+                const model: T = (Object.assign({}, response._doc))
+                return model;
+            }));
     }
-    
+
     update(entity: any): Observable<boolean> {
-        return new Observable<boolean>(subscriber => {
-            const entityToUpdate = {...entity, id: undefined };
-            this.mongoseModel.findOneAndUpdate({ _id: entity.id }, { $set: entityToUpdate } as any)
-                .exec()
-                .then(() => {
-                    subscriber.next(true);
-                })
-                .catch(error => {
-                    subscriber.error(error);
-                });
-        });
+        const entityToUpdate = { ...entity, id: undefined };
+        return from(this.mongoseModel.findOneAndUpdate({ _id: entity.id }, { $set: entityToUpdate } as any).exec())
+            .pipe(map(_ => true));
     }
 
     delete(id: string): Observable<boolean> {
-        return new Observable<boolean>(subscriber => {
-            this.mongoseModel.remove({ _id: id })
-                .exec()
-                .then(() => {
-                    subscriber.next(true);
-                })
-                .catch(error => {
-                    subscriber.error(error);
-                });
-        });
+        return from(this.mongoseModel.remove({ _id: id }).exec()).pipe(map(_ => true));
     }
 }
