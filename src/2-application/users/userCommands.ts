@@ -6,11 +6,12 @@ import { IUserRepository } from "../../3.gateways/repositories/userRepository";
 import { CreateUserDto } from "./dtos/createUserDto";
 import { UserCreatedViewModel } from "./viewModels/userCreatedViewModel";
 import { JWTManager } from "../../4-infrastructure/identity/JWT/JWTManager";
+import { statusCodes } from "../../1-domain/statusCodes";
 
 export class UserCommands {
     constructor(private userRepository: IUserRepository) { }
 
-    signin(userDto: CreateUserDto): Observable<UserCreatedViewModel> {
+    signin(userDto: CreateUserDto): Observable< UserCreatedViewModel> {
         return this.userRepository.get({ email: userDto.email })
         .pipe(switchMap(users => {
             if (users.length === 0) {
@@ -24,7 +25,7 @@ export class UserCommands {
                 return throwError(() => {
                     const error: any = new Error();
                     error.message = 'User already exist';
-                    error.status = 401;
+                    error.code = statusCodes.conflict;
                     return error;
                 });
             }

@@ -11,7 +11,7 @@ export class UserQueries {
     getUsers(): Observable<UserViewModel[]> {
         return this.userRepository.get().pipe(map((response: User[]): UserViewModel[] => {
             return response.map((item: User): UserViewModel => {
-                const { name, nickName, email, stories, _id} = item;
+                const { name, nickName, email, stories, _id } = item;
                 return {
                     _id, name, nickName, email, stories
                 };
