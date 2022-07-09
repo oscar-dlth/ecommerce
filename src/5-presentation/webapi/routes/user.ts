@@ -11,13 +11,13 @@ const userCommands = container.get(TOKENS.userCommands);
 const userQueries = container.get(TOKENS.userQueries);
 
 const signIn = (req: Request, res: Response) => {
-    userCommands.createUser(req.body as CreateUserDto)
+    userCommands.signin(req.body as CreateUserDto)
         .pipe(take(1))
         .subscribe({
             next: (response: UserCreatedViewModel) => {
                 res.send(response)
             },
-            error: (error: ErrorResponseViewModel) => {
+            error: (error) => {
                 res.status(error.status).json(error);
             }
         });
@@ -49,52 +49,10 @@ const getUserById = (req: Request, res: Response) => {
         });
 }
 
-const createNewUser = (req: Request, res: Response) => {
-    userCommands.createNewUser(req.body as CreateUserDto)
-        .pipe(take(1))
-        .subscribe({
-            next: (response) => {
-                res.send(response)
-            },
-            error: (error: ErrorResponseViewModel) => {
-                res.status(500).json({ error: error.message, status: 500 });
-            }
-        });
-}
-
-const updateUser = (req: Request, res: Response) => {
-    userCommands.updateUser(req.body as UpdateUserDto)
-        .pipe(take(1))
-        .subscribe({
-            next: (response) => {
-                res.send({ status: response })
-            },
-            error: (error: ErrorResponseViewModel) => {
-                res.status(500).json({ error: error.message, status: 500 });
-            }
-        });
-}
-
-const deleteUser = (req: Request, res: Response) => {
-    userCommands.deleteUser(req.params.id)
-        .pipe(take(1))
-        .subscribe({
-            next: (response) => {
-                res.send({ status: response })
-            },
-            error: (error: ErrorResponseViewModel) => {
-                res.status(500).json({ error: error.message, status: 500 });
-            }
-        });
-}
-
 const router = {
     signIn,
     getUsers,
-    getUserById,
-    createNewUser,
-    updateUser,
-    deleteUser
+    getUserById
 };
 
 export default router;
