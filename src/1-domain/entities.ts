@@ -48,5 +48,5 @@ export class User implements BaseModel{
 }
 
 export interface BaseModel{
-    _id?: string;
+    _id: string;
 }
