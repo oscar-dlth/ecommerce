@@ -3,7 +3,7 @@ import { container } from '../../../../branDI/container';
 import { TOKENS } from '../../../../branDI/tokens';
 import { CreateUserDto } from "../../../2-application/users/dtos/createUserDto";
 import { take } from 'rxjs/operators'
-import { ErrorResponseViewModel } from '../../../2-application/errorResponseViewModel';
+import { ErrorResponseViewModel } from '../../../2-application/common/errorResponseViewModel';
 import { UserCreatedViewModel } from '../../../2-application/users/viewModels/userCreatedViewModel';
 import { UpdateUserDto } from '../../../2-application/users/dtos/updateUserDto';
 
