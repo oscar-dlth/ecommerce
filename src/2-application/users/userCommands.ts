@@ -11,25 +11,29 @@ import { statusCodes } from "../../1-domain/statusCodes";
 export class UserCommands {
     constructor(private userRepository: IUserRepository) { }
 
-    signin(userDto: CreateUserDto): Observable< UserCreatedViewModel> {
+    signin(userDto: CreateUserDto): Observable<UserCreatedViewModel> {
         return this.userRepository.get({ email: userDto.email })
-        .pipe(switchMap(users => {
-            if (users.length === 0) {
-                const user: User = { ...userDto, _id: '' }
+            .pipe(switchMap((users): Observable<UserCreatedViewModel> => {
+                if (users.length === 0) {
+                    const user: User = { ...userDto, _id: '' }
 
-                return this.userRepository.insert(user).pipe(map(():UserCreatedViewModel => {
-                    const { token, duration } = JWTManager.sign(user.email, user.name);
-                    return { token , expiresIn: duration }
-                }));
-            } else {
-                return throwError(() => {
-                    const error: any = new Error();
-                    error.message = 'User already exist';
-                    error.code = statusCodes.conflict;
-                    return error;
-                });
-            }
-        }));
+                    return this.userRepository
+                        .insert(user)
+                        .pipe(
+                            map((): UserCreatedViewModel => {
+                                const { token, duration } = JWTManager.sign(user.email, user.name);
+                                return { token, expiresIn: duration }
+                            })
+                        );
+                } else {
+                    return throwError(() => {
+                        const error: any = new Error();
+                        error.message = 'User already exist';
+                        error.code = statusCodes.conflict;
+                        return error;
+                    });
+                }
+            }));
     }
 }
 
