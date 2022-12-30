@@ -21,11 +21,8 @@ if (env === 'production') {
 
 // Signal connection
 mongoose.connection.once('open', ()=>{
-  console.log('Connection has been made');
 }).on('error', (error) => {
-  console.log('Connect error', error);
 }).on('disconnected', () => {
-  console.log('Connection disconnected');
 })
 
 export default mongoose;
