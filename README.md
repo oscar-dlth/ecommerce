@@ -78,6 +78,114 @@ To achive this rule is implemented [Dependency Inversion Principle](https://es.w
 ## Folder structure.
 
 ```
+stories-api
+    brandDI
+    src/
+      1-domain/
+        entities.ts
+        statusCodes.ts
+      2-application/
+        common/
+          errorResponseViewModel.ts
+          responseViewModel.ts
+        users/
+          dtos/
+            createUserDto.ts
+            updateUserDto.ts
+          viewModels/
+            userCreatedViewModel.ts
+            userViewModel.ts  
+          userCommands.ts
+          userQueries.ts
+      3-gateways/
+        repositories/
+          database/
+            base/
+              baseRepository.ts
+            userRepository.ts
+      4-infrastructure/
+        db/
+          mongoDB/
+            implementations/
+              resposotories/
+                base/
+                  baseRepository.ts
+                userRepository
+            models/
+              user.ts
+            connection.ts
+          ...
+          another database implementations
+          ...
+        identity/
+          middleware/
+            check-auth.ts
+          JWTManager.ts
+      5.presentation/
+        routes/
+          index.ts (all routes)
+          user.ts ( user routes implementations)
+        index.tx ( express app)
+    tests/
+      user.spec.ts
+            
+                  
+        
+
+stories-api
+    brandDI
+    src/
+      1-domain/
+        entities.ts
+        statusCodes.ts
+      2-application/
+        common/
+          errorResponseViewModel.ts
+          responseViewModel.ts
+        users/
+          dtos/
+            createUserDto.ts
+            updateUserDto.ts
+          viewModels/
+            userCreatedViewModel.ts
+            userViewModel.ts  
+          userCommands.ts
+          userQueries.ts
+      3-gateways/
+        repositories/
+          database/
+            base/
+              baseRepository.ts
+            userRepository.ts
+      4-infrastructure/
+        db/
+          mongoDB/
+            implementations/
+              resposotories/
+                base/
+                  baseRepository.ts
+                userRepository
+            models/
+              user.ts
+            connection.ts
+          ...
+          another database implementations
+          ...
+        identity/
+          middleware/
+            check-auth.ts
+          JWTManager.ts
+      5.presentation/
+        routes/
+          index.ts (all routes)
+          user.ts ( user routes implementations)
+        index.tx ( express app)
+    tests/
+      user.spec.ts
+            
+                  
+        
+.
 └── stories-api/
     ├── brandDI
     ├── src/
@@ -105,15 +213,18 @@ To achive this rule is implemented [Dependency Inversion Principle](https://es.w
     │   │           └── userRepository.ts
     │   ├── 4-infrastructure/
     │   │   ├── db/
-    │   │   │   └── mongoDB/
-    │   │   │       ├── implementations/
-    │   │   │       │   └── resposotories/
-    │   │   │       │       ├── base/
-    │   │   │       │       │   └── baseRepository.ts
-    │   │   │       │       └── userRepository
-    │   │   │       ├── models/
-    │   │   │       │   └── user.ts
-    │   │   │       └── connection.ts
+    │   │   │   ├── mongoDB/
+    │   │   │   │   ├── implementations/
+    │   │   │   │   │   └── resposotories/
+    │   │   │   │   │       ├── base/
+    │   │   │   │   │       │   └── baseRepository.ts
+    │   │   │   │   │       └── userRepository
+    │   │   │   │   ├── models/
+    │   │   │   │   │   └── user.ts
+    │   │   │   │   └── connection.ts
+    │   │   │   ├── ...
+    │   │   │   ├── another database implementations
+    │   │   │   └── ...
     │   │   └── identity/
     │   │       ├── middleware/
     │   │       │   └── check-auth.ts
