@@ -6,31 +6,47 @@ import { IUserRepository } from "../../3.gateways/repositories/userRepository";
 import { UserViewModel } from "./viewModels/userViewModel";
 
 export class UserQueries {
+
     constructor(private userRepository: IUserRepository) { }
 
     getUsers(): Observable<UserViewModel[]> {
+
         return this.userRepository.get().pipe(map((response: User[]): UserViewModel[] => {
+
             return response.map((item: User): UserViewModel => {
-                const { name, nickName, email, stories, _id } = item;
+
+                const { name, nickName, email, id } = item;
+                
                 return {
-                    _id, name, nickName, email, stories
+                    id, name, nickName, email
                 };
+
             });
+
         }));
+
     }
 
-    getById(id: string): Observable<UserViewModel | null> {
+    getById(id: number): Observable<UserViewModel | null> {
         return this.userRepository.getById(id).pipe(map((response: User | null): UserViewModel | null => {
+
             let result = null;
+
             if (response) {
-                const { name, nickName, email, stories, _id } = response;
+
+                const { name, nickName, email } = response;
                 result = { 
-                    _id, name, nickName, email, stories
+                    id, name, nickName, email
                  }
+
             }
+
             return result;
+
         }));
+
     }
+
 }
 
 injected(UserQueries, TOKENS.userRepository);

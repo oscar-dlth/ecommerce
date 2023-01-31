@@ -22,7 +22,7 @@ export abstract class BaseRepository<T extends BaseModel> implements IBaseReposi
             }));
     }
 
-    getById(id: string): Observable<T | null> {
+    getById(id: number): Observable<T | null> {
         return from(this.mongoseModel.findById(id)
             .exec()).pipe(map((response: any) => {
                 let result = null;
