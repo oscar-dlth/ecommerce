@@ -10,15 +10,13 @@ The repository has a branch for each database implementation ie. [my-sql-impleme
 
 ## Software layer overview
 
-This picture show us the layer distribution of a clean arquitecture.
+This picture show the layer distribution of a clean arquitecture.
 
 ![clean-arquitecure-diagram]
 
 [clean-arquitecure-diagram]: https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg
 Image by [Robert C. Martin](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 
-</br>
-</br>
 </br>
 
 In this project the layer names will be changed as [Clean Architecture with .NET Core: Getting Started](https://jasontaylor.dev/clean-architecture-getting-started/) indicates.
@@ -30,14 +28,12 @@ In this project the layer names will be changed as [Clean Architecture with .NET
 Image By [Clean Architecture with .NET Core: Getting Started](https://jasontaylor.dev/clean-architecture-getting-started/)
 
 <br>
-<br>
 
 
 ## Structure Folder
 
 Based on [The Clean Architecture — Beginner’s Guide](https://betterprogramming.pub/the-clean-architecture-beginners-guide-e4b7058c1165) and [Clean Architecture with .NET Core: Getting Started](https://jasontaylor.dev/clean-architecture-getting-started/) i decided to use this distribution.
 
-<br>
 <br>
 
 ### 1. Domain (Entities)
@@ -76,4 +72,4 @@ Web Api User Interface, calls the Application layer operations.
 ## The Dependency Rule 
 All outer layers know about inner layers but not viceversa.
 
-To achive this is implemented [Dependency Inversion Principle](https://es.wikipedia.org/wiki/Principio_de_inversi%C3%B3n_de_la_dependencia) with [Brand DI Container](https://brandi.js.org/).
+To achive this rule is implemented [Dependency Inversion Principle](https://es.wikipedia.org/wiki/Principio_de_inversi%C3%B3n_de_la_dependencia) with [Brand DI Container](https://brandi.js.org/).
