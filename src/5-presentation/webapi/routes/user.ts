@@ -15,7 +15,9 @@ const signIn = (req: Request, res: Response, next: NextFunction) => {
     userCommands.signin(req.body as CreateUserDto)
         .pipe(take(1))
         .subscribe({
+
             next: (response: UserCreatedViewModel) => {
+
                 const responseData: responseViewModel<UserCreatedViewModel> = {
                     status: 'OK',
                     data: response
@@ -23,6 +25,7 @@ const signIn = (req: Request, res: Response, next: NextFunction) => {
                 res.send(responseData)
             },
             error: (error) => {
+
                 const statusCode = error.code
             
                 const responseError: ErrorResponseViewModel =  {
@@ -31,22 +34,27 @@ const signIn = (req: Request, res: Response, next: NextFunction) => {
                     code: statusCode
                 }
                 next(responseError);
+
             }
         });
 }
 
 const getUsers = (req: Request, res: Response) => {
+
     userQueries.getUsers()
         .pipe(take(1))
         .subscribe({
             next: (response) => {
+
                 const responseData: responseViewModel<UserViewModel[]> = {
                     status: 'OK',
                     data: response
                 };
+
                 res.send(responseData)
             },
             error: (error) => {
+
                 const statusCode = error.code | 500;
                 
                 const responseError: ErrorResponseViewModel =  {
@@ -54,23 +62,28 @@ const getUsers = (req: Request, res: Response) => {
                     message: error.message,
                     code: statusCode
                 }
+
                 res.status(statusCode).json(responseError);
             }
         });
+
 }
 
 const getUserById = (req: Request, res: Response, next: NextFunction) => {
-    userQueries.getById(req.params.id)
+    userQueries.getById(req.params.id as any)
         .pipe(take(1))
         .subscribe({
             next: (response) => {
+
                 const responseData: responseViewModel<UserViewModel | null> = {
                     status: 'OK',
                     data: response
                 };
                 res.send( responseData )
+
             },
             error: (error) => {
+
                 const statusCode = error.code;
                 const responseError: ErrorResponseViewModel =  {
                     status: 'Fail',
@@ -78,6 +91,7 @@ const getUserById = (req: Request, res: Response, next: NextFunction) => {
                     code: statusCode
                 }
                 next(responseError);
+                
             }
         });
 }
