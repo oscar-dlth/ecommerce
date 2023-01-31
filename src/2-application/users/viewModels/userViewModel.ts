@@ -1,9 +1,7 @@
-import { Story } from "../../../1-domain/entities";
 
 export class UserViewModel{
-    _id!: string;
+    id!: number;
     name!: string;
     nickName!: string;
     email!: string;
-    stories?: Array<Story>;
 }
