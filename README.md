@@ -130,5 +130,3 @@ To achive this rule is implemented [Dependency Inversion Principle](https://es.w
         └── user.spec.ts
 ```
 
-
-
