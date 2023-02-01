@@ -8,7 +8,7 @@ const express = require('express');
 dotenv.config();
 const app: Express = express();
 
-app.use(jwt);
+//app.use(jwt);
 app.use(express.json());
 app.use(routes)
 
