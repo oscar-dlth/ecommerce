@@ -1,0 +1,5 @@
+module.exports = {
+  'config': path.resolve('src/4-infrastructure/db/mySql/sequelizer/config/config.ts', 'sequelize.js'),
+  'models-path': path.resolve('src/4-infrastructure/db/mySql/sequelizer/models', 'sequelize'),
+  'migrations-path': path.resolve('src/4-infrastructure/db/mySql/sequelizer/migrations', 'migrations')
+}
