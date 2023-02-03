@@ -24,10 +24,4 @@ if (env !== 'production') {
   
 }
 
-// Signal connection
-mongoose.connection.once('open', ()=>{
-}).on('error', (error) => {
-}).on('disconnected', () => {
-}) 
-
 export default mongoose;

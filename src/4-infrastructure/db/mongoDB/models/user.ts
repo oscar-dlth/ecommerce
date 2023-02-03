@@ -23,15 +23,6 @@ const userSchema = new Schema<User>({
     password :  { 
         type : String, 
         require: true
-    },
-    stories: 
-    {
-        type:Array,
-        require:true
-    },
-    comments: {
-        type:Array,
-        require:true
     }
 });
 
