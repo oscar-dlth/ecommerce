@@ -6,13 +6,13 @@ import { BaseRepository } from "./base/baseRepository";
 
 export class UserRepository extends BaseRepository<User> implements IUserRepository {
     getModelToInsert(user: User) {
-        return new User({
+        return {
             _id: '',
             name: user.name,
             nickName: user.nickName,
             email: user.email,
             password: JWTManager.encrypt(user.password),
-        });
+        };
     }
 }
 
