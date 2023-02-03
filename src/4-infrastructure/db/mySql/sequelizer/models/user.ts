@@ -7,11 +7,6 @@ import { User } from '../../../../../1-domain/entities';
 
 module.exports = (sequelize: any, DataTypes: any) => {
   class UserModel extends Model<User> {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     id!: number;
     name!: string;
     nickName!: string;
@@ -19,7 +14,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
     password!: string;
 
     static associate(models: any) {
-      // define association here
+      
     }
   }
   UserModel.init({
@@ -40,7 +35,6 @@ module.exports = (sequelize: any, DataTypes: any) => {
       password: {
         type: DataTypes.STRING 
       }
-
   }, {
     sequelize,
     modelName: 'User',
