@@ -106,7 +106,7 @@ To achive this rule is implemented [Dependency Inversion Principle](https://es.w
     │   ├── 4-infrastructure/
     │   │   ├── db/
     │   │   │   ├── mongoDB/
-    │   │   │   │   ├── resposotories/
+    │   │   │   │   ├── repositories/
 │   │   │   │   │   |   ├── base/
 │   │   │   │   │   |   │   └── baseRepository.ts
 │   │   │   │   │   |   └── userRepository
