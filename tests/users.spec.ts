@@ -1,5 +1,4 @@
 import request from "supertest";
-import mongoose from "../src/4-infrastructure/db/mongoDB/conection";
 import app from "../src/5-presentation/webapi";
 
 describe('GET users', ()=>{
@@ -25,16 +24,7 @@ describe('GET users', ()=>{
 
     })
 
-    afterAll( ()=> {
-
-        closeDBConnection()
-
-    })
 });
 
-const closeDBConnection = ()=>{
 
-    mongoose.connection.close();
-
-};
 
