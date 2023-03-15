@@ -106,11 +106,10 @@ To achive this rule is implemented [Dependency Inversion Principle](https://es.w
     │   ├── 4-infrastructure/
     │   │   ├── db/
     │   │   │   ├── mongoDB/
-    │   │   │   │   ├── implementations/
-    │   │   │   │   │   └── resposotories/
-    │   │   │   │   │       ├── base/
-    │   │   │   │   │       │   └── baseRepository.ts
-    │   │   │   │   │       └── userRepository
+    │   │   │   │   ├── repositories/
+│   │   │   │   │   |   ├── base/
+│   │   │   │   │   |   │   └── baseRepository.ts
+│   │   │   │   │   |   └── userRepository
     │   │   │   │   ├── models/
     │   │   │   │   │   └── user.ts
     │   │   │   │   └── connection.ts
@@ -129,4 +128,6 @@ To achive this rule is implemented [Dependency Inversion Principle](https://es.w
     └── tests/
         └── user.spec.ts
 ```
+
+
 

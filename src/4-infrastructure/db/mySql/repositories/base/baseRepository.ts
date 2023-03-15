@@ -1,7 +1,7 @@
 import {  from, map, Observable, of, throwError } from "rxjs";
+import db from "../../../sequelizer/models";
 import { BaseModel } from "../../../../../../1-domain/entities";
 import { IBaseRepository } from "../../../../../../3.gateways/repositories/base/baseRepository";
-import UserModel from "../../../models/user";
 
 export abstract class BaseRepository<T extends BaseModel> implements IBaseRepository<T>{
     
@@ -11,7 +11,7 @@ export abstract class BaseRepository<T extends BaseModel> implements IBaseReposi
 
     get(filter: any): Observable<T[]> {
 
-        return from(UserModel.findAll(filter))
+        return from(db.User.findAll(filter))
             .pipe(map((response: any) => {
 
                 return response.map((item: any) => {
@@ -25,7 +25,7 @@ export abstract class BaseRepository<T extends BaseModel> implements IBaseReposi
 
     getById(id: number): Observable<T | null> {
 
-        return from(UserModel.findByPk(id)).pipe(map((response: any) => {
+        return from(db.User.findByPk(id)).pipe(map((response: any) => {
 
                 let result = null;
                 if (response) {
@@ -42,7 +42,7 @@ export abstract class BaseRepository<T extends BaseModel> implements IBaseReposi
 
         const newUserDto = this.getModelToInsert(entity)
 
-        return  from(UserModel.create( newUserDto)).pipe(map((response: any) => {
+        return  from(db.User.create( newUserDto)).pipe(map((response: any) => {
 
                     const model: T = (Object.assign({}, response._doc))
                     return model;
@@ -54,7 +54,7 @@ export abstract class BaseRepository<T extends BaseModel> implements IBaseReposi
 
         const entityToUpdate = { ...entity, id: undefined };
 
-        return from(UserModel.update( entityToUpdate , {
+        return from(db.User.update( entityToUpdate , {
             where: {
               _id:  entity.id
             }
@@ -65,7 +65,7 @@ export abstract class BaseRepository<T extends BaseModel> implements IBaseReposi
 
     delete(id: string): Observable<boolean> {
 
-        return from( UserModel.destroy({
+        return from( db.User.destroy({
             where: {
               _id: id
             }

@@ -1,7 +1,7 @@
 import { Model } from "mongoose";
 import {  from, map, Observable, of } from "rxjs";
-import { BaseModel } from "../../../../../../1-domain/entities";
-import { IBaseRepository } from "../../../../../../3.gateways/repositories/base/baseRepository";
+import { BaseModel } from "../../../../../1-domain/entities";
+import { IBaseRepository } from "../../../../../3.gateways/repositories/base/baseRepository";
 
 export abstract class BaseRepository<T extends BaseModel> implements IBaseRepository<T>{
     private mongoseModel: Model<T, {}, {}>;
