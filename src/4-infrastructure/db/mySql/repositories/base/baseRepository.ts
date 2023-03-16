@@ -1,14 +1,19 @@
 import {  from, map, Observable, of, throwError } from "rxjs";
 import { BaseModel } from "../../../../../1-domain/entities";
 import { IBaseRepository } from "../../../../../3.gateways/repositories/base/baseRepository";
+import { JWTManager } from "../../../../identity/JWT/JWTManager";
 import db from "../../sequelizer/models";
 
 
-export abstract class BaseRepository<T extends BaseModel> implements IBaseRepository<T>{
+export class BaseRepository<T extends BaseModel> implements IBaseRepository<T>{
     
     constructor() { }
 
-    abstract getModelToInsert(newModel: T): any;
+    onUpdateEntity( entity: T ): T {
+
+        return entity;
+
+    }
 
     get(filter: any): Observable<T[]> {
 
@@ -41,14 +46,15 @@ export abstract class BaseRepository<T extends BaseModel> implements IBaseReposi
 
     insert(entity: T): Observable<T> {
 
-        const newUserDto = this.getModelToInsert(entity)
+        this.onUpdateEntity(entity);
 
-        return  from(db.User.create( newUserDto)).pipe(map((response: any) => {
+        return  from(db.User.create( entity)).pipe(map((response: any) => {
 
                     const model: T = (Object.assign({}, response._doc))
                     return model;
 
                 }));
+                
     }
 
     update(entity: any): Observable<boolean> {
