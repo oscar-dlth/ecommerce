@@ -1,6 +1,6 @@
 'use strict';
 
-import config from "../config/config";
+const config = require("../config/config.js").default;
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
