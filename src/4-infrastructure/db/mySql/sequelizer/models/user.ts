@@ -7,12 +7,6 @@ import { User } from '../../../../../1-domain/entities';
 
 module.exports = (sequelize: any, DataTypes: any) => {
   class UserModel extends Model<User> {
-    id!: number;
-    name!: string;
-    nickName!: string;
-    email!: string;
-    password!: string;
-
     static associate(models: any) {
       
     }
