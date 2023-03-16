@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "movies_db_dev",
+    "database": "ecommerce_db_dev",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
