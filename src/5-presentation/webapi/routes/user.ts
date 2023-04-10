@@ -7,8 +7,8 @@ import { ErrorResponseViewModel } from '../../../2-application/common/errorRespo
 import { UserCreatedViewModel } from '../../../2-application/users/viewModels/userCreatedViewModel';
 import { responseViewModel } from '../../../2-application/common/responseViewModel';
 import { UserViewModel } from '../../../2-application/users/viewModels/userViewModel';
-import { handleError } from '../../../1-domain/utils';
 import { UpdateUserDto } from '../../../2-application/users/dtos/updateUserDto';
+import { handleError } from '../utils';
 
 const userCommands = container.get(TOKENS.userCommands);
 const userQueries = container.get(TOKENS.userQueries);

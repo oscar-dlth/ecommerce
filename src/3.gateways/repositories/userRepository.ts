@@ -1,4 +1,3 @@
-import { Observable } from "rxjs";
 import { User } from "../../1-domain/entities";
 import { IBaseRepository } from "./base/baseRepository";
 
