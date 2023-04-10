@@ -5,15 +5,14 @@ import { JWTManager } from "../../../identity/JWT/JWTManager";
 import { BaseRepository } from "./base/baseRepository";
 
 export class UserRepository extends BaseRepository<User> implements IUserRepository {
-    getModelToInsert(user: User) {
+    
+    override onUpdateEntity(entity: User): User {
         return {
-            _id: '',
-            name: user.name,
-            nickName: user.nickName,
-            email: user.email,
-            password: JWTManager.encrypt(user.password),
-        };
+            ...entity,
+            password: JWTManager.encrypt(entity.password),
+        }
     }
+    
 }
 
 injected(UserRepository);

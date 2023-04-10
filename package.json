@@ -7,7 +7,9 @@
     "build": "npx tsc",
     "start": "node dist/index.js",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
-    "test": "npx jest --detectOpenHandles"
+    "test": "npx jest --detectOpenHandles",
+    "migrate": "npx sequelize-cli db:migrate",
+    "seed:all": "npx sequelize-cli db:seed:all"
   },
   "repository": {
     "type": "git",
