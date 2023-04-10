@@ -9,41 +9,28 @@ export class UserQueries {
 
     constructor(private userRepository: IUserRepository) { }
 
-    getUsers(): Observable<UserViewModel[]> {
+    async getUsers(): Promise<UserViewModel[]> {
 
-        return this.userRepository.get().pipe(map((response: User[]): UserViewModel[] => {
+        const result = await this.userRepository.get();
 
-            return response.map((item: User): UserViewModel => {
-
-                const { name, nickName, email, id } = item;
+        return result;
                 
-                return {
-                    id, name, nickName, email
-                };
+    };
 
-            });
+    async getById(id: number): Promise<UserViewModel | null> {
 
-        }));
+        const response =  await this.userRepository.getById(id);
 
-    }
+        let result = null;
 
-    getById(id: number): Observable<UserViewModel | null> {
-        return this.userRepository.getById(id).pipe(map((response: User | null): UserViewModel | null => {
+        if (response) {
 
-            let result = null;
+            const { name, nickName, email } = response;
+            result = { id, name, nickName, email }
 
-            if (response) {
+        }
 
-                const { name, nickName, email } = response;
-                result = { 
-                    id, name, nickName, email
-                 }
-
-            }
-
-            return result;
-
-        }));
+        return result;
 
     }
 

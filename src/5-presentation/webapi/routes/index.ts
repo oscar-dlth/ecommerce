@@ -8,5 +8,7 @@ router
   .post('/users/signup', userRouter.signIn)
   .get('/users', userRouter.getUsers)
   .get('/users/:id', userRouter.getUserById)
+  .delete('/users/:id', userRouter.deleteUser)
+  .put('/users', userRouter.updateUser)
 
 export default router;

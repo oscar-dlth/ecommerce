@@ -7,99 +7,120 @@ import { ErrorResponseViewModel } from '../../../2-application/common/errorRespo
 import { UserCreatedViewModel } from '../../../2-application/users/viewModels/userCreatedViewModel';
 import { responseViewModel } from '../../../2-application/common/responseViewModel';
 import { UserViewModel } from '../../../2-application/users/viewModels/userViewModel';
+import { handleError } from '../../../1-domain/utils';
+import { UpdateUserDto } from '../../../2-application/users/dtos/updateUserDto';
 
 const userCommands = container.get(TOKENS.userCommands);
 const userQueries = container.get(TOKENS.userQueries);
 
-const signIn = (req: Request, res: Response, next: NextFunction) => {
-    userCommands.signin(req.body as CreateUserDto)
-        .pipe(take(1))
-        .subscribe({
+const signIn = async (req: Request, res: Response, next: NextFunction) => {
 
-            next: (response: UserCreatedViewModel) => {
+    try {
+        
+        const result =  await userCommands.signin( req.body as CreateUserDto );
 
-                const responseData: responseViewModel<UserCreatedViewModel> = {
-                    status: 'OK',
-                    data: response
-                };
-                res.send(responseData)
-            },
-            error: (error) => {
+        const responseData: responseViewModel<UserCreatedViewModel> = {
+            status: 'OK',
+            data: result
+        };
 
-                const statusCode = error.code
-            
-                const responseError: ErrorResponseViewModel =  {
-                    status: 'Fail',
-                    message: error.message,
-                    code: statusCode
-                }
-                next(responseError);
+        res.send(responseData)
 
-            }
-        });
+    } catch (error: any) {
+
+        handleError(error, next);
+        
+    }
+    
 }
 
-const getUsers = (req: Request, res: Response) => {
+const getUsers = async (req: Request, res: Response, next: NextFunction) => {
 
-    userQueries.getUsers()
-        .pipe(take(1))
-        .subscribe({
-            next: (response) => {
+    try {
 
-                const responseData: responseViewModel<UserViewModel[]> = {
-                    status: 'OK',
-                    data: response
-                };
+        const result =  await userQueries.getUsers();
+    
+        const responseData: responseViewModel<UserViewModel[]> = {
+            status: 'OK',
+            data: result
+        };
 
-                res.send(responseData)
-            },
-            error: (error) => {
+        res.send(responseData);
+        
+    } catch (error: any) {
+        
+        handleError(error, next);
 
-                const statusCode = error.code | 500;
-                
-                const responseError: ErrorResponseViewModel =  {
-                    status: 'Fail',
-                    message: error.message,
-                    code: statusCode
-                }
-
-                res.status(statusCode).json(responseError);
-            }
-        });
+    }
 
 }
 
-const getUserById = (req: Request, res: Response, next: NextFunction) => {
-    userQueries.getById(req.params.id as any)
-        .pipe(take(1))
-        .subscribe({
-            next: (response) => {
+const getUserById = async (req: Request, res: Response, next: NextFunction) => {
 
-                const responseData: responseViewModel<UserViewModel | null> = {
-                    status: 'OK',
-                    data: response
-                };
-                res.send( responseData )
+    try {
+        
+        const result = await userQueries.getById(req.params.id as any);
+    
+        const responseData: responseViewModel<UserViewModel | null> = {
+            status: 'OK',
+            data: result
+        };
+    
+        res.send( responseData )
 
-            },
-            error: (error) => {
+    } catch ( error: any ) {
+        
+        handleError(error, next);
 
-                const statusCode = error.code;
-                const responseError: ErrorResponseViewModel =  {
-                    status: 'Fail',
-                    message: error.message,
-                    code: statusCode
-                }
-                next(responseError);
-                
-            }
-        });
+    }
+}
+
+const updateUser = async (req: Request, res: Response, next: NextFunction) => {
+
+    try {
+        
+        const result = await userCommands.update(req.body as UpdateUserDto);
+    
+        const responseData: responseViewModel<number> = {
+            status: 'OK',
+            data: result
+        };
+    
+        res.send( responseData )
+
+    } catch ( error: any ) {
+        
+        handleError(error, next);
+
+    }
+}
+
+const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
+
+    try {
+        
+        const result = await userCommands.delete(req.params.id as any);
+    
+        const responseData: responseViewModel<number> = {
+            status: 'OK',
+            data: result
+        };
+    
+        res.send( responseData )
+
+    } catch ( error: any ) {
+        
+        handleError(error, next);
+
+    }
 }
 
 const router = {
     signIn,
     getUsers,
-    getUserById
+    getUserById,
+    deleteUser,
+    updateUser
 };
 
 export default router;

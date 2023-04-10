@@ -1,7 +1,6 @@
 import {  from, map, Observable, of, throwError } from "rxjs";
 import { BaseModel } from "../../../../../1-domain/entities";
 import { IBaseRepository } from "../../../../../3.gateways/repositories/base/baseRepository";
-import { JWTManager } from "../../../../identity/JWT/JWTManager";
 import db from "../../sequelizer/models";
 
 
@@ -15,69 +14,58 @@ export class BaseRepository<T extends BaseModel> implements IBaseRepository<T>{
 
     }
 
-    get(filter: any): Observable<T[]> {
+    async get(filter: any): Promise<T[]> {
 
-        return from(db.User.findAll(filter))
-            .pipe(map((response: any) => {
+        const result = await db.User.findAll(filter);
 
-                return response.map((item: any) => {
-                    const model: T = { ...item.dataValues }
-                    return model;
-                })
-
-            }));
+        const model: T[] = result.map( (data: any)=> data.dataValues)
+        
+        return model;
 
     }
 
-    getById(id: number): Observable<T | null> {
+    async getById(id: number): Promise<T | null> {
 
-        return from(db.User.findByPk(id)).pipe(map((response: any) => {
+        const response = await db.User.findByPk(id);
 
-                let result = null;
-                if (response) {
-                    const model: T = (Object.assign({}, response.dataValues))
-                    result = model;
-                }
-                return result;
+        let result = null;
+        
+        if (response) {
+            const model: T = (Object.assign({}, response.dataValues))
+            result = model;
+        }
 
-            }))
+        return result;
 
     }
 
-    insert(entity: T): Observable<T> {
+    async insert(entity: T): Promise<T> {
 
         this.onUpdateEntity(entity);
 
-        return  from(db.User.create( entity)).pipe(map((response: any) => {
+        const result =  await db.User.create(entity);
 
-                    const model: T = (Object.assign({}, response._doc))
-                    return model;
-
-                }));
+        const model: T = (Object.assign({}, result.dataValues))
+        
+        return model;
                 
     }
 
-    update(entity: any): Observable<boolean> {
+    async update(entity: T): Promise<number> {
 
-        const entityToUpdate = { ...entity, id: undefined };
+        const entityToUpdate = { ...entity };
 
-        return from(db.User.update( entityToUpdate , {
-            where: {
-              _id:  entity.id
-            }
-          }))
-        .pipe(map(_ => true));
+        const result =  await db.User.update(entityToUpdate,  { where: { id: entityToUpdate.id  } });
+        
+        return result.length;
         
     }
 
-    delete(id: string): Observable<boolean> {
+    async delete(id: string): Promise<number> {
 
-        return from( db.User.destroy({
-            where: {
-              _id: id
-            }
-        }))
-        .pipe(map(_ => true));
+        const result = await db.User.destroy( { where: { id: id }});
+        
+        return result;
 
     }
 }
