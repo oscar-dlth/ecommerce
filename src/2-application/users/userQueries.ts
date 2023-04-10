@@ -1,5 +1,4 @@
 import { injected } from "brandi";
-import { map, Observable } from "rxjs";
 import { TOKENS } from "../../../branDI/tokens";
 import { User } from "../../1-domain/entities";
 import { IUserRepository } from "../../3.gateways/repositories/userRepository";
