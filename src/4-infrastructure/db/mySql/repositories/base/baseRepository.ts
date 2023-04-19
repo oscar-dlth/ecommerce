@@ -4,21 +4,17 @@ import db from "../../sequelizer/models";
 
 
 export class BaseRepository<T extends BaseModel> implements IBaseRepository<T>{
-    
+
     constructor() { }
 
-    onUpdateEntity( entity: T ): T {
-
-        return entity;
-
-    }
+    onUpdateEntity(entity: T) { }
 
     async get(filter: any): Promise<T[]> {
 
         const result = await db.User.findAll(filter);
 
-        const model: T[] = result.map( (data: any)=> data.dataValues)
-        
+        const model: T[] = result.map((data: any) => data.dataValues)
+
         return model;
 
     }
@@ -28,7 +24,7 @@ export class BaseRepository<T extends BaseModel> implements IBaseRepository<T>{
         const response = await db.User.findByPk(id);
 
         let result = null;
-        
+
         if (response) {
             const model: T = (Object.assign({}, response.dataValues))
             result = model;
@@ -42,28 +38,28 @@ export class BaseRepository<T extends BaseModel> implements IBaseRepository<T>{
 
         this.onUpdateEntity(entity);
 
-        const result =  await db.User.create(entity);
+        const result = await db.User.create(entity);
 
         const model: T = (Object.assign({}, result.dataValues))
-        
+
         return model;
-                
+
     }
 
     async update(entity: T): Promise<number> {
 
         const entityToUpdate = { ...entity };
 
-        const result =  await db.User.update(entityToUpdate,  { where: { id: entityToUpdate.id  } });
-        
+        const result = await db.User.update(entityToUpdate, { where: { id: entityToUpdate.id } });
+
         return result.length;
-        
+
     }
 
     async delete(id: string): Promise<number> {
 
-        const result = await db.User.destroy( { where: { id: id }});
-        
+        const result = await db.User.destroy({ where: { id: id } });
+
         return result;
 
     }
