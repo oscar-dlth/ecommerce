@@ -1,6 +1,6 @@
 'use strict';
 
-import { ProductCategory } from "../../../../../1-domain/entities";
+import { ProductCategory } from "@domain/entities";
 
 const {
   Model

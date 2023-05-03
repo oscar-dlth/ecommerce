@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 
-import { Address } from "../../../../../1-domain/entities";
+import { Address } from "@domain/entities";
 
 module.exports = (sequelize: any, DataTypes: any) => {
   class AddressModel extends Model<Address> {
