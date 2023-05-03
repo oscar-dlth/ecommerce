@@ -1,6 +1,6 @@
 import { injected } from "brandi";
-import { TOKENS } from "../../../branDI/tokens";
-import { IUserRepository } from "../../3.gateways/repositories/userRepository";
+import { TOKENS } from "@branDI/tokens";
+import { IUserRepository } from "@gateways/repositories/userRepository";
 import { UserViewModel } from "./viewModels/userViewModel";
 
 export class UserQueries {

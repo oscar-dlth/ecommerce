@@ -1,5 +1,5 @@
 import { NextFunction } from "express";
-import { ErrorResponseViewModel } from "../../2-application/common/errorResponseViewModel";
+import { ErrorResponseViewModel } from "@application/common/errorResponseViewModel";
 
 export const handleError = (error: any, next: NextFunction) => {
 

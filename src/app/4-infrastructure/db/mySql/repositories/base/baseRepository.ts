@@ -1,5 +1,5 @@
-import { BaseModel } from "../../../../../1-domain/entities";
-import { IBaseRepository } from "../../../../../3.gateways/repositories/base/baseRepository";
+import { BaseModel } from "@domain/entities";
+import { IBaseRepository } from "@gateways/repositories/base/baseRepository";
 import db from "../../sequelizer/models";
 
 

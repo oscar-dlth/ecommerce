@@ -1,6 +1,6 @@
 'use strict';
 
-import { OrderDetail } from "../../../../../1-domain/entities";
+import { OrderDetail } from "@domain/entities";
 
 const {
   Model
