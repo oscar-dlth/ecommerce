@@ -1,14 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
-import { container } from '../../../../branDI/container';
 import { TOKENS } from '../../../../branDI/tokens';
 import { CreateUserDto } from "../../../2-application/users/dtos/createUserDto";
-import { take } from 'rxjs/operators'
-import { ErrorResponseViewModel } from '../../../2-application/common/errorResponseViewModel';
 import { UserCreatedViewModel } from '../../../2-application/users/viewModels/userCreatedViewModel';
 import { responseViewModel } from '../../../2-application/common/responseViewModel';
 import { UserViewModel } from '../../../2-application/users/viewModels/userViewModel';
 import { UpdateUserDto } from '../../../2-application/users/dtos/updateUserDto';
 import { handleError } from '../utils';
+import { container } from '../../../../branDI/container';
 
 const userCommands = container.get(TOKENS.userCommands);
 const userQueries = container.get(TOKENS.userQueries);

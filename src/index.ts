@@ -1,5 +1,5 @@
-import db from "./src/4-infrastructure/db/mySql/sequelizer/models";
-import app from "./src/5-presentation/webapi";
+import db from "./app/4-infrastructure/db/mySql/sequelizer/models";
+import app from "./app/5-presentation/webapi";
 
 const PORT = process.env.PORT || 3000
 

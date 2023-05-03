@@ -1,6 +1,6 @@
 'use strict';
 
-const config = require("../config/config.js").default;
+const config = require("../config/config.js");
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
