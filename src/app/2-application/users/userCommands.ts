@@ -1,5 +1,4 @@
 import { injected } from "brandi";
-import { TOKENS } from "../../../branDI/tokens";
 import { User } from "../../1-domain/entities";
 import { IUserRepository } from "../../3.gateways/repositories/userRepository";
 import { CreateUserDto } from "./dtos/createUserDto";
@@ -7,6 +6,7 @@ import { UserCreatedViewModel } from "./viewModels/userCreatedViewModel";
 import { JWTManager } from "../../4-infrastructure/identity/JWT/JWTManager";
 import { statusCodes } from "../../1-domain/statusCodes";
 import { UpdateUserDto } from "./dtos/updateUserDto";
+import { TOKENS } from "../../../branDI/tokens";
 
 export class UserCommands {
 

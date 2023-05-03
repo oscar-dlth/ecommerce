@@ -1,7 +1,7 @@
 import { Container } from 'brandi';
-import { UserCommands } from '../src/2-application/users/userCommands';
-import { UserQueries } from '../src/2-application/users/userQueries';
-import { UserRepository } from '../src/4-infrastructure/db/mySql/repositories/userRepository';
+import { UserCommands } from '../app/2-application/users/userCommands';
+import { UserQueries } from '../app/2-application/users/userQueries';
+import { UserRepository } from '../app/4-infrastructure/db/mySql/repositories/userRepository';
 
 import { TOKENS } from './tokens';
 
