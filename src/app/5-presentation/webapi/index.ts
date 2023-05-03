@@ -1,6 +1,5 @@
 import {Express, NextFunction, Response, Request } from "express"
 import routes from "./routes";
-import jwt from "../../4-infrastructure/identity/JWT/middleware/check-auth";
 const dotenv = require('dotenv');
 const express = require('express');
 

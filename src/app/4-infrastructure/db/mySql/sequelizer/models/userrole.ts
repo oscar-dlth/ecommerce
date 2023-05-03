@@ -1,6 +1,6 @@
 'use strict';
 
-import { UserRole } from "../../../../../1-domain/entities";
+import { UserRole } from "@domain/entities";
 
 const {
   Model

@@ -5,7 +5,7 @@ import {
   Model
 } from 'sequelize';
 
-import { Role } from "../../../../../1-domain/entities";
+import { Role } from "@domain/entities";
 
 module.exports = (sequelize: any, DataTypes: any) => {
   class RoleModel extends Model<Role> {

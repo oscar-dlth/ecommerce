@@ -3,7 +3,7 @@ import {
   Model
 } from'sequelize';
 
-import { User } from '../../../../../1-domain/entities';
+import { User } from '@domain/entities';
 
 module.exports = (sequelize: any, DataTypes: any) => {
   class UserModel extends Model<User> {

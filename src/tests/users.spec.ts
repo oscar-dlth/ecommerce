@@ -1,5 +1,5 @@
 import request from "supertest";
-import app from "../app/5-presentation/webapi";
+import app from "@presentation/webapi";
 
 describe('GET users', ()=>{
 
