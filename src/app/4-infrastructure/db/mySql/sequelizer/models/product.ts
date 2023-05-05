@@ -10,6 +10,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
     static associate(models: any) {
       
       this.belongsTo(models.ProductCategory, { foreignKey: 'productCategoryId' });
+      this.belongsTo(models.ProductBrand, { foreignKey: 'productBrandId' });
       
     }
   }
@@ -23,7 +24,8 @@ module.exports = (sequelize: any, DataTypes: any) => {
     sku: DataTypes.STRING,
     price: DataTypes.DECIMAL,
     isActive: DataTypes.BOOLEAN,
-    productCategoryId: DataTypes.INTEGER
+    categoryId: DataTypes.INTEGER,
+    brandId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Product',

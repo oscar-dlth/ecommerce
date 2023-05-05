@@ -1,8 +1,8 @@
 const path = require('path');
 
 module.exports = {
-  'config': path.resolve('src/4-infrastructure/db/mySql/sequelizer/config/config.js'),
-  'models-path': path.resolve('src/4-infrastructure/db/mySql/sequelizer/models'),
-  'migrations-path': path.resolve('src/4-infrastructure/db/mySql/sequelizer/migrations'),
-  'seeders-path': path.resolve('src/4-infrastructure/db/mySql/sequelizer/seeders')
+  'config': path.resolve('src/app/4-infrastructure/db/mySql/sequelizer/config/config.js'),
+  'models-path': path.resolve('src/app/4-infrastructure/db/mySql/sequelizer/models'),
+  'migrations-path': path.resolve('src/app/4-infrastructure/db/mySql/sequelizer/migrations'),
+  'seeders-path': path.resolve('src/app/4-infrastructure/db/mySql/sequelizer/seeders')
 }
