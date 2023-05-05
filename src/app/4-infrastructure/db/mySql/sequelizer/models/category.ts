@@ -1,17 +1,17 @@
 'use strict';
 
-import { ProductCategory } from "@domain/entities";
+import { Category } from "@domain/entities";
 
 const {
   Model
 } = require('sequelize');
 module.exports = (sequelize: any, DataTypes: any) => {
-  class ProductCategoryModel extends Model<ProductCategory> {
+  class CategoryModel extends Model<Category> {
     static associate(models: any) {
       // define association here
     }
   }
-  ProductCategoryModel.init({
+  CategoryModel.init({
     id: {
       primaryKey: true,
       type: DataTypes.INTEGER,
@@ -22,7 +22,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
     description: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'ProductCategory',
+    modelName: 'Category',
   });
-  return ProductCategoryModel;
+  return CategoryModel;
 };

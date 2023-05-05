@@ -2,27 +2,25 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    return queryInterface.bulkInsert('Roles', [{
+  async up (queryInterface, Sequelize) {
+    return queryInterface.bulkInsert('Brands', [{
       id: 1,
-      name: 'admin',
-      code: 'admin',
+      name: 'brand one',
+      code: 'brand-one',
       description: '',
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
       id: 2,
-      name: 'customer',
-      code: 'customer',
+      name: 'brand two',
+      code: 'brand-two',
       description: '',
       createdAt: new Date(),
       updatedAt: new Date()
     }]);
   },
 
-  async down(queryInterface, Sequelize) {
-    
-    return queryInterface.bulkDelete('Roles', null, {});
-
+  async down (queryInterface, Sequelize) {
+    return queryInterface.bulkDelete('Brands', null, {});
   }
 };

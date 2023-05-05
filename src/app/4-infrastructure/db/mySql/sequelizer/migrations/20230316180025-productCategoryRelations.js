@@ -6,11 +6,11 @@ module.exports = {
     await queryInterface.addConstraint('Products', {
 
       type: 'foreign key',
-      name: 'product_productcategory_fk',
-      fields: ['productCategoryId'],
+      name: 'product_category_fk',
+      fields: ['categoryId'],
       references: {
 
-        table: 'ProductCategories',
+        table: 'Categories',
         field: 'id'
       
       },
@@ -22,7 +22,7 @@ module.exports = {
 
   async down (queryInterface, Sequelize) {
     
-    await queryInterface.removeConstraint('Products', 'product_productcategory_fk' );
+    await queryInterface.removeConstraint('Products', 'product_category_fk' );
 
   }
 };
