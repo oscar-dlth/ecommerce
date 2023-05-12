@@ -1,5 +1,5 @@
 import { injected } from "brandi";
-import { TOKENS } from "@branDI/tokens";
+import { TOKENS } from "@dependency-inyection/tokens";
 import { IUserRepository } from "@gateways/repositories/userRepository";
 import { UserViewModel } from "./viewModels/userViewModel";
 

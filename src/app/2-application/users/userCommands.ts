@@ -6,7 +6,7 @@ import { UserCreatedViewModel } from "./viewModels/userCreatedViewModel";
 import { JWTManager } from "@infrastructure/identity/JWT/JWTManager";
 import { statusCodes } from "@domain/statusCodes";
 import { UpdateUserDto } from "./dtos/updateUserDto";
-import { TOKENS } from "@branDI/tokens";
+import { TOKENS } from "@dependency-inyection/tokens";
 
 export class UserCommands {
 
