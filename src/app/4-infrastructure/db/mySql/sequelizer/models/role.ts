@@ -9,9 +9,7 @@ import { Role } from "@domain/entities";
 
 module.exports = (sequelize: any, DataTypes: any) => {
   class RoleModel extends Model<Role> {
-    static associate(models: any) {
-      // define association here
-    }
+    static associate(models: any) {}
   }
   RoleModel.init({
     id: {

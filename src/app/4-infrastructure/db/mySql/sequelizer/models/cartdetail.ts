@@ -8,11 +8,9 @@ const {
 module.exports = (sequelize: any, DataTypes: any) => {
   class CartDetailModel extends Model<CartDetail> {
     
-    static associate(models: any) {
-      
-      this.belongsTo(models.Cart, { foreignKey: 'cartId' })
-      this.belongsTo(models.Product, { foreignKey: 'productId' })
-
+    static associate(models: any) {   
+      this.belongsTo(models.Cart, { foreignKey: 'cartId' });
+      this.belongsTo(models.Product, { foreignKey: 'productId' });
     }
 
   }
@@ -24,8 +22,14 @@ module.exports = (sequelize: any, DataTypes: any) => {
     },
     quantity: DataTypes.INTEGER,
     subtotal: DataTypes.DECIMAL,
-    productId: DataTypes.INTEGER,
-    cartId: DataTypes.INTEGER
+    productId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    cartId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'CartDetail',

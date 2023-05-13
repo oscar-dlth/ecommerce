@@ -9,9 +9,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
   class cartModel extends Model<Cart> {
     
     static associate(models: any) {
-      
-      this.belongsTo(models.User, { foreignKey: 'userId' })
-      
+      this.belongsTo(models.User, { foreignKey: 'userId' });
     }
   }
   cartModel.init({
@@ -21,7 +19,10 @@ module.exports = (sequelize: any, DataTypes: any) => {
       autoIncrement: true
     },
     total: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'Cart',
