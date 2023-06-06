@@ -9,9 +9,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
   class AddressModel extends Model<Address> {
     
     static associate(models: any) {
-
-      this.belongsTo(models.User, { foreignKey: 'userId' })
-
+      this.belongsTo(models.User, { foreignKey: 'userId' });
     }
 
   }
@@ -27,7 +25,10 @@ module.exports = (sequelize: any, DataTypes: any) => {
     zip: DataTypes.STRING,
     street: DataTypes.STRING,
     number: DataTypes.STRING,
-    userId: DataTypes.INTEGER
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'Address',

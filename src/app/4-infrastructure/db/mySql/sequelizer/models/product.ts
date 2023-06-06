@@ -8,10 +8,8 @@ const {
 module.exports = (sequelize: any, DataTypes: any) => {
   class ProductModel extends Model<Product> {
     static associate(models: any) {
-      
-      this.belongsTo(models.Category, { foreignKey: 'productCategoryId' });
-      this.belongsTo(models.Brand, { foreignKey: 'productBrandId' });
-      
+      this.belongsTo(models.Category, { foreignKey: 'categoryId' });
+      this.belongsTo(models.Brand, { foreignKey: 'brandId' });
     }
   }
   ProductModel.init({
@@ -24,8 +22,14 @@ module.exports = (sequelize: any, DataTypes: any) => {
     sku: DataTypes.STRING,
     price: DataTypes.DECIMAL,
     isActive: DataTypes.BOOLEAN,
-    categoryId: DataTypes.INTEGER,
-    brandId: DataTypes.INTEGER
+    brandId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    categoryId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'Product',

@@ -7,9 +7,7 @@ const {
 } = require('sequelize');
 module.exports = (sequelize: any, DataTypes: any) => {
   class PaymentModel extends Model<Payment> {
-    static associate(models: any) {
-      // define association here
-    }
+    static associate(models: any) {}
   }
   PaymentModel.init({
     id: {
