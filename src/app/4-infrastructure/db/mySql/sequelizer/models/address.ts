@@ -1,9 +1,11 @@
 'use strict';
+
+import { Address } from "@domain/entities/Address";
+
 const {
   Model
 } = require('sequelize');
 
-import { Address } from "@domain/entities";
 
 module.exports = (sequelize: any, DataTypes: any) => {
   class AddressModel extends Model<Address> {

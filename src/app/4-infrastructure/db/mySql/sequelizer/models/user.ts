@@ -1,9 +1,9 @@
 'use strict';
+import { User } from '@domain/entities/User';
 import {
   Model
 } from'sequelize';
 
-import { User } from '@domain/entities';
 
 module.exports = (sequelize: any, DataTypes: any) => {
   class UserModel extends Model<User> {

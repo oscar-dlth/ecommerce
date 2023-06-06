@@ -1,6 +1,8 @@
 'use strict';
 
-import { Product } from "@domain/entities";
+import { Product } from "@domain/entities/Product";
+
+
 
 const {
   Model

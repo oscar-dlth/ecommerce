@@ -1,6 +1,6 @@
-import { BaseModel } from "@domain/entities";
 import { IBaseRepository } from "@gateways/repositories/base/baseRepository";
 import db from "../../sequelizer/models";
+import { BaseModel } from "@domain/core/entities/base/BaseModel";
 
 
 export class BaseRepository<T extends BaseModel> implements IBaseRepository<T>{

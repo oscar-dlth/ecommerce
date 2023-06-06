@@ -1,12 +1,12 @@
 import { injected } from "brandi";
-import { User } from "@domain/entities";
 import { IUserRepository } from "@gateways/repositories/userRepository";
 import { CreateUserDto } from "./dtos/createUserDto";
 import { UserCreatedViewModel } from "./viewModels/userCreatedViewModel";
 import { JWTManager } from "@infrastructure/identity/JWT/JWTManager";
-import { statusCodes } from "@domain/statusCodes";
+import { statusCodes } from "@domain/core/common/statusCodes";
 import { UpdateUserDto } from "./dtos/updateUserDto";
 import { TOKENS } from "@dependency-inyection/tokens";
+import { User } from "@domain/entities/User";
 
 export class UserCommands {
 

@@ -1,11 +1,11 @@
 'use strict';
 
 
+import { Role } from '@domain/entities/Role';
 import {
   Model
 } from 'sequelize';
 
-import { Role } from "@domain/entities";
 
 module.exports = (sequelize: any, DataTypes: any) => {
   class RoleModel extends Model<Role> {

@@ -1,6 +1,8 @@
 'use strict';
 
-import { Payment } from "@domain/entities";
+import { Payment } from "@domain/entities/Payment";
+
+
 
 const {
   Model

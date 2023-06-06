@@ -1,6 +1,6 @@
 'use strict';
 
-import { Cart } from "@domain/entities";
+import { Cart } from "@domain/entities/Cart";
 
 const {
   Model
