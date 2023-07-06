@@ -1,16 +1,13 @@
 'use strict';
 
-
 import { Role } from '@domain/entities/Role';
-import {
-  Model
-} from 'sequelize';
-
+import { Model } from 'sequelize'
 
 module.exports = (sequelize: any, DataTypes: any) => {
   class RoleModel extends Model<Role> {
     static associate(models: any) {}
   }
+  
   RoleModel.init({
     id: {
       primaryKey: true,

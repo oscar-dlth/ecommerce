@@ -1,16 +1,13 @@
 'use strict';
 
 import { Payment } from "@domain/entities/Payment";
+import { Model } from 'sequelize'
 
-
-
-const {
-  Model
-} = require('sequelize');
 module.exports = (sequelize: any, DataTypes: any) => {
   class PaymentModel extends Model<Payment> {
     static associate(models: any) {}
   }
+  
   PaymentModel.init({
     id: {
       primaryKey: true,

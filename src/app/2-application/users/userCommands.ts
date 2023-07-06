@@ -7,6 +7,7 @@ import { statusCodes } from "@domain/core/common/statusCodes";
 import { UpdateUserDto } from "./dtos/updateUserDto";
 import { TOKENS } from "@dependency-inyection/tokens";
 import { User } from "@domain/entities/User";
+import { IUser } from "@domain/core/interfaces/IUser";
 
 export class UserCommands {
 
@@ -17,7 +18,7 @@ export class UserCommands {
         const result = await this.userRepository.get(filter);
 
         if( result.length === 0 ) {
-            const user: User = { ...userDto, id: 0 }
+            const user: IUser = { ...userDto, id: 0 }
             const userInserted =  await this.userRepository.insert(user);
             const { token, duration: expiresIn } = JWTManager.sign(userInserted.email, userInserted.name);
             return { token, expiresIn } ;
@@ -31,10 +32,9 @@ export class UserCommands {
     }
 
     async update(userDto: UpdateUserDto): Promise<number> {
-        const user: User = { ...userDto }
+        const user: IUser = { ...userDto }
         const result = await this.userRepository.update(user);
         return result;
-
     }
 
     async delete(id: string): Promise<number> {

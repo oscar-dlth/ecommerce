@@ -1,6 +1,6 @@
-import { BaseModel } from "@domain/core/entities/base/BaseModel";
+import { IBaseEntity } from "@domain/core/interfaces/base/IBaseEntity";
 
-export interface IBaseRepository<T extends BaseModel>{
+export interface IBaseRepository<T extends IBaseEntity>{
     get(filter?: any): Promise<Array<T>>;
     getById(id: number): Promise<T | null>;
     insert(model: T): Promise<T>;

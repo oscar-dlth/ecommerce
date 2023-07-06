@@ -1,3 +1,7 @@
-import { GenericRole } from "@domain/core/entities/GenericRole";
+import { IUserRole } from "@domain/core/interfaces/IUserRole";
 
-export class UserRole extends GenericRole { }
+export class UserRole implements IUserRole {
+    id: number;
+    userId: number;
+    roleId: number;
+}

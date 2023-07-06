@@ -1,3 +1,7 @@
-import { GenericCart } from "@domain/core/entities/GenericCart";
+import { ICart } from "@domain/core/interfaces/ICart";
 
-export class Cart extends GenericCart {}
+export class Cart implements ICart {
+    id: number;
+    total: number;
+    userId: number;
+}

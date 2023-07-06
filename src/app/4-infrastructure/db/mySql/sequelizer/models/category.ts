@@ -1,14 +1,13 @@
 'use strict';
 
 import { Category } from "@domain/entities/Category";
+import { Model } from 'sequelize'
 
-const {
-  Model
-} = require('sequelize');
 module.exports = (sequelize: any, DataTypes: any) => {
   class CategoryModel extends Model<Category> {
     static associate(models: any) {}
   }
+  
   CategoryModel.init({
     id: {
       primaryKey: true,

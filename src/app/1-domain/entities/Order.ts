@@ -1,3 +1,8 @@
-import { GenericOrder } from "@domain/core/entities/GenericOrder";
+import { IOrder } from "@domain/core/interfaces/IOrder";
 
-export class Order extends GenericOrder {}
+export class Order implements IOrder {
+    id: number;
+    total: number;
+    userId: number;
+    paymentId: number;
+}

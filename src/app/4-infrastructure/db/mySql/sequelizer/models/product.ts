@@ -1,12 +1,8 @@
 'use strict';
 
 import { Product } from "@domain/entities/Product";
+import { Model } from 'sequelize'
 
-
-
-const {
-  Model
-} = require('sequelize');
 module.exports = (sequelize: any, DataTypes: any) => {
   class ProductModel extends Model<Product> {
     static associate(models: any) {
@@ -14,6 +10,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
       this.belongsTo(models.Brand, { foreignKey: 'brandId' });
     }
   }
+  
   ProductModel.init({
     id: {
       primaryKey: true,
@@ -36,5 +33,6 @@ module.exports = (sequelize: any, DataTypes: any) => {
     sequelize,
     modelName: 'Product',
   });
+  
   return ProductModel;
 };

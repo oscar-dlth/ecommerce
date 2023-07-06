@@ -1,14 +1,13 @@
 'use strict';
 import { User } from '@domain/entities/User';
-import {
-  Model
-} from'sequelize';
+import { Model } from'sequelize';
 
 
 module.exports = (sequelize: any, DataTypes: any) => {
   class UserModel extends Model<User> {
     static associate(models: any) {}
   }
+  
   UserModel.init({
       id: {
         primaryKey: true,

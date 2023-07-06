@@ -1,4 +1,4 @@
-export class responseViewModel<T>{
-    status!: string;
-    data!: T;
+export interface IResponseViewModel<T>{
+    status: string;
+    data: T;
 }

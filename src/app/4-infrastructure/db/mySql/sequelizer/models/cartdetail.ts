@@ -1,20 +1,16 @@
 'use strict';
 
 import { CartDetail } from "@domain/entities/CartDetail";
+import { Model } from 'sequelize'
 
-
-const {
-  Model
-} = require('sequelize');
 module.exports = (sequelize: any, DataTypes: any) => {
   class CartDetailModel extends Model<CartDetail> {
-    
     static associate(models: any) {   
       this.belongsTo(models.Cart, { foreignKey: 'cartId' });
       this.belongsTo(models.Product, { foreignKey: 'productId' });
     }
-
   }
+  
   CartDetailModel.init({
     id: {
       primaryKey: true,

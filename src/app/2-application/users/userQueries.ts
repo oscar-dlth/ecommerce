@@ -1,24 +1,37 @@
 import { injected } from "brandi";
 import { TOKENS } from "@dependency-inyection/tokens";
 import { IUserRepository } from "@gateways/repositories/userRepository";
-import { UserViewModel } from "./viewModels/userViewModel";
+import { IUserViewModel } from "./viewModels/userViewModel";
+import { IUser } from "@domain/core/interfaces/IUser";
 
 export class UserQueries {
 
     constructor(private userRepository: IUserRepository) { }
 
-    async getUsers(): Promise<UserViewModel[]> {
-        const result = await this.userRepository.get();
-        return result;
+    async getUsers(): Promise<IUserViewModel[]> {
+        const users = await this.userRepository.get();
+
+        const result = users.map( (user: IUser)=> ({
+                id: user.id,
+                name: user.name, 
+                nickName: user.nickName, 
+                email: user.email,
+            }) 
+        )
+        return result as IUserViewModel[];
     };
 
-    async getById(id: number): Promise<UserViewModel | null> {
+    async getById(id: number): Promise<IUserViewModel | null> {
         const response =  await this.userRepository.getById(id);
-        let result = null;
+        let result: IUserViewModel | null = null;
 
         if (response) {
-            const { name, nickName, email } = response;
-            result = { id, name, nickName, email }
+            result = {
+                id: response.id ,
+                name: response.name, 
+                nickName: response.nickName, 
+                email: response.email 
+            } 
         }
 
         return result;

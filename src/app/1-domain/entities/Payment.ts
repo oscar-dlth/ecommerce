@@ -1,3 +1,7 @@
-import { GenericPayment } from "@domain/core/entities/GenericPayment";
+import { IPayment } from "@domain/core/interfaces/IPayment";
 
-export class Payment extends GenericPayment {}
+export class Payment implements IPayment {
+    id: number;
+    amount: number;
+    type: string;
+}

@@ -1,3 +1,8 @@
-import { GenericRole } from "@domain/core/entities/GenericRole";
+import { IRole } from "@domain/core/interfaces/IRole";
 
-export class Role extends GenericRole { }
+export class Role implements IRole {
+    id: number;
+    code: string;
+    name: string;
+    description: string;
+}

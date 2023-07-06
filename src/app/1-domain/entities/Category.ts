@@ -1,3 +1,8 @@
-import { GenericCategory } from "@domain/core/entities/GenericCategory";
+import { ICategory } from "@domain/core/interfaces/ICategory";
 
-export class Category extends GenericCategory {}
+export class Category implements ICategory {
+    id: number;
+    code: string;
+    name: string;
+    description: string;
+}

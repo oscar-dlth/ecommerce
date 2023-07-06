@@ -1,3 +1,8 @@
-import { GenericBrand } from "@domain/core/entities/GenericBrand";
+import { IBrand } from "@domain/core/interfaces/IBrand";
 
-export class Brand extends GenericBrand {}
+export class Brand implements IBrand {
+    id: number;
+    code: string;
+    name: string;
+    description: number;
+}
