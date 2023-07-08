@@ -16,7 +16,7 @@ export class BaseRepository<T extends IBaseEntity> implements IBaseRepository<T>
 
     }
 
-    async getById(id: number): Promise<T | null> {
+    async getById(id: string): Promise<T | null> {
         const response = await db.User.findByPk(id);
         let result = null;
         if (response) {

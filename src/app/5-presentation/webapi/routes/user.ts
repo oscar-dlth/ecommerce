@@ -1,19 +1,21 @@
 import { NextFunction, Request, Response } from 'express';
-import { TOKENS } from '@dependency-inyection/tokens';
-import { CreateUserDto } from "@application/users/dtos/createUserDto";
 import { UserCreatedViewModel } from '@application/users/viewModels/userCreatedViewModel';
 import { IUserViewModel } from '@application/users/viewModels/userViewModel';
-import { UpdateUserDto } from '@application/users/dtos/updateUserDto';
 import { handleError } from '../utils';
-import { container } from '@dependency-inyection/container';
 import { IResponseViewModel } from '@application/common/responseViewModel';
+import { Mediator } from 'mediatr-ts';
+import { GetUsersQuery } from '@application/users/queries/getUsers/GetUsersQuery';
+import { UpdateUserCommand } from '@application/users/commands/updateUser/UpdateUserCommand';
+import { GetUserByIdQuery } from '@application/users/queries/getUserById/GetUserByIdQuery';
+import { DeleteUserCommand } from '@application/users/commands/deleteUser/DeleteUserCommand';
+import { CreateUserCommand } from '@application/users/commands/createUser/CreateUserCommand';
 
-const userCommands = container.get(TOKENS.userCommands);
-const userQueries = container.get(TOKENS.userQueries);
+const mediator =  new Mediator();
 
 const signIn = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const result =  await userCommands.signin( req.body as CreateUserDto );
+        const command = new CreateUserCommand();
+        const result = await mediator.send<UserCreatedViewModel>(command);
         const responseData: IResponseViewModel<UserCreatedViewModel> = {
             status: 'OK',
             data: result
@@ -26,11 +28,14 @@ const signIn = async (req: Request, res: Response, next: NextFunction) => {
 
 const getUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const result =  await userQueries.getUsers();
+        const query = new GetUsersQuery();
+        const result = await mediator.send<IUserViewModel[]>(query);
+        
         const responseData: IResponseViewModel<IUserViewModel[]> = {
             status: 'OK',
             data: result
         };
+        
         res.send(responseData);
     } catch (error: any) {
         handleError(error, next);
@@ -39,7 +44,10 @@ const getUsers = async (req: Request, res: Response, next: NextFunction) => {
 
 const getUserById = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const result = await userQueries.getById(req.params.id as any);
+        const query = new GetUserByIdQuery();
+        query.id =  req.params.id;
+        const result = await mediator.send<IUserViewModel>(query);
+
         const responseData: IResponseViewModel<IUserViewModel | null> = {
             status: 'OK',
             data: result
@@ -52,7 +60,8 @@ const getUserById = async (req: Request, res: Response, next: NextFunction) => {
 
 const updateUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const result = await userCommands.update(req.body as UpdateUserDto);
+        const query = new UpdateUserCommand();
+        const result = await mediator.send<number>(query);
         const responseData: IResponseViewModel<number> = {
             status: 'OK',
             data: result
@@ -65,7 +74,8 @@ const updateUser = async (req: Request, res: Response, next: NextFunction) => {
 
 const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const result = await userCommands.delete(req.params.id as any);
+        const command = new DeleteUserCommand();
+        const result = await mediator.send<number>(command);
         const responseData: IResponseViewModel<number> = {
             status: 'OK',
             data: result
