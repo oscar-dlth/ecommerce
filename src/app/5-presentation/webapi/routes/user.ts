@@ -9,6 +9,8 @@ import { UpdateUserCommand } from '@application/users/commands/updateUser/Update
 import { GetUserByIdQuery } from '@application/users/queries/getUserById/GetUserByIdQuery';
 import { DeleteUserCommand } from '@application/users/commands/deleteUser/DeleteUserCommand';
 import { CreateUserCommand } from '@application/users/commands/createUser/CreateUserCommand';
+import { LoginCommand } from '@application/users/commands/login/LoginCommand';
+import { LoginViewModel } from '@application/users/viewModels/LoginViewModel';
 
 const mediator =  new Mediator();
 
@@ -17,6 +19,22 @@ const signIn = async (req: Request, res: Response, next: NextFunction) => {
         const command = new CreateUserCommand();
         const result = await mediator.send<UserCreatedViewModel>(command);
         const responseData: IResponseViewModel<UserCreatedViewModel> = {
+            status: 'OK',
+            data: result
+        };
+        res.send(responseData)
+    } catch (error: any) {
+        handleError(error, next);
+    }
+}
+
+const login = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const command = new LoginCommand();
+        command.password =  req.body.password;
+        command.userName = req.body.userName;
+        const result = await mediator.send<LoginViewModel>(command);
+        const responseData: IResponseViewModel<LoginViewModel> = {
             status: 'OK',
             data: result
         };
@@ -91,7 +109,8 @@ const router = {
     getUsers,
     getUserById,
     deleteUser,
-    updateUser
+    updateUser,
+    login
 };
 
 export default router;

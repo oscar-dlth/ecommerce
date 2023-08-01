@@ -6,7 +6,6 @@ import { GetUserByIdQuery } from "./GetUserByIdQuery";
 
 @requestHandler(GetUserByIdQuery)
 export class GetUserByIdQueryHandler implements IRequestHandler<GetUserByIdQuery, IUserViewModel | null >{
-    id:string;
     handle(request: GetUserByIdQuery): Promise<IUserViewModel | null> {
         const usersService = container.get(TOKENS.usersService);
         return usersService.getById(request.id);

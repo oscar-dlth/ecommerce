@@ -7,11 +7,11 @@ import { TOKENS } from "@dependency-inyection/tokens";
 import { statusCodes } from "@domain/core/common/statusCodes";
 import { IUser } from "@domain/core/interfaces/IUser";
 import { IUserRepository } from "@gateways/repositories/userRepository";
-import { JWTManager } from "@infrastructure/identity/JWT/JWTManager";
 import { injected } from "brandi";
+import { AuthService } from "@domain/services/AuthService";
 
 export class UsersService implements IUserService{
-    constructor(private userRepository: IUserRepository){
+    constructor(private userRepository: IUserRepository,private authService: AuthService){
 
     }
 
@@ -52,7 +52,7 @@ export class UsersService implements IUserService{
         if( result.length === 0 ) {
             const user: IUser = { ...userDto, id: 0 }
             const userInserted =  await this.userRepository.insert(user);
-            const { token, duration: expiresIn } = JWTManager.sign(userInserted.email, userInserted.name);
+            const { token, duration: expiresIn } = this.authService.sign(userInserted.email, userInserted.name);
             return { token, expiresIn } ;
         } else {
             const error: any = new Error();
@@ -76,4 +76,4 @@ export class UsersService implements IUserService{
     
 }
 
-injected(UsersService, TOKENS.userRepository);
+injected(UsersService, TOKENS.userRepository, TOKENS.AuthService);

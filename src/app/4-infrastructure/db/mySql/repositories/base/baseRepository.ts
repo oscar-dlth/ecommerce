@@ -1,13 +1,12 @@
 import { IBaseRepository } from "@gateways/repositories/base/baseRepository";
 import db from "../../sequelizer/models";
 import { IBaseEntity } from "@domain/core/interfaces/base/IBaseEntity";
+import { AuthService } from "@domain/services/AuthService";
 
 
 export class BaseRepository<T extends IBaseEntity> implements IBaseRepository<T>{
 
     constructor() { }
-
-    onUpdateEntity(entity: T) { }
 
     async get(filter: any): Promise<T[]> {
         const result = await db.User.findAll(filter);
@@ -27,7 +26,6 @@ export class BaseRepository<T extends IBaseEntity> implements IBaseRepository<T>
     }
 
     async insert(entity: T): Promise<T> { 
-        this.onUpdateEntity(entity);
         const result = await db.User.create(entity);
         const model: T = (Object.assign({}, result.dataValues))
         return model;
