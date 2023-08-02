@@ -1,13 +1,10 @@
 import { IBaseRepository } from "@gateways/repositories/base/baseRepository";
-import db from "../../sequelizer/models";
 import { IBaseEntity } from "@domain/core/interfaces/base/IBaseEntity";
-import { AuthService } from "@gateways/services/AuthService";
 
 
 export class BaseRepository<T extends IBaseEntity> implements IBaseRepository<T>{
 
-    constructor(private entity: any) {
-     }
+    constructor(private entity: any) {}
 
     async get(filter: any): Promise<T[]> {
         const result = await this.entity.findAll(filter);
