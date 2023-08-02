@@ -1,4 +1,4 @@
-import { IUserService } from "@domain/services/usersService";
+import { IUserService } from "@gateways/services/usersService";
 import { CreateUserCommand } from "@application/users/commands/createUser/CreateUserCommand";
 import { UpdateUserCommand } from "@application/users/commands/updateUser/UpdateUserCommand";
 import { UserCreatedViewModel } from "@application/users/viewModels/userCreatedViewModel";
@@ -8,7 +8,7 @@ import { statusCodes } from "@domain/core/common/statusCodes";
 import { IUser } from "@domain/core/interfaces/IUser";
 import { IUserRepository } from "@gateways/repositories/userRepository";
 import { injected } from "brandi";
-import { AuthService } from "@domain/services/AuthService";
+import { AuthService } from "@gateways/services/AuthService";
 
 export class UsersService implements IUserService{
     constructor(private userRepository: IUserRepository,private authService: AuthService){
