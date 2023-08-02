@@ -1,18 +1,16 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
 
-import { Address } from "@domain/entities";
+import { Address } from "@domain/entities/Address";
+import { Model } from 'sequelize'
+
 
 module.exports = (sequelize: any, DataTypes: any) => {
   class AddressModel extends Model<Address> {
-    
     static associate(models: any) {
       this.belongsTo(models.User, { foreignKey: 'userId' });
     }
-
   }
+  
   AddressModel.init({
     id: {
       primaryKey: true,

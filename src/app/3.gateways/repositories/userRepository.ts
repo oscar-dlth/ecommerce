@@ -1,10 +1,10 @@
-import { User } from "../../1-domain/entities";
 import { IBaseRepository } from "./base/baseRepository";
+import { IUser } from "@domain/core/interfaces/IUser";
 
-export interface IUserRepository extends IBaseRepository<User> {
-    get(filter?: any): Promise<Array<User>>;
-    getById(id: number): Promise<User | null>;
-    insert(user: User): Promise<User>;
-    update(user: User): Promise<number>;
+export interface IUserRepository extends IBaseRepository<IUser> {
+    get(filter?: any): Promise<Array<IUser>>;
+    getById(id: string): Promise<IUser | null>;
+    insert(user: IUser): Promise<IUser>;
+    update(user: IUser): Promise<number>;
     delete(string: string): Promise<number>;
 }

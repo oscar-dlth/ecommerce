@@ -1,10 +1,8 @@
 'use strict';
 
-import { OrderDetail } from "@domain/entities";
+import { OrderDetail } from "@domain/entities/OrderDetail";
+import { Model } from 'sequelize'
 
-const {
-  Model
-} = require('sequelize');
 module.exports = (sequelize: any, DataTypes: any) => {
   class OrderDetailModel extends Model<OrderDetail> {
 

@@ -11,7 +11,7 @@ const app: Express = express();
 app.use(express.json());
 app.use(routes)
 
-app.use( (err: any, req: Request, res:Response, next: NextFunction) => {
+app.use( (err: any, req: Request, res: Response, next: NextFunction) => {
 
   if (err) {
 
@@ -31,9 +31,10 @@ app.use( (err: any, req: Request, res:Response, next: NextFunction) => {
   next()
 })
 
-app.use((err: any, req: Request, res:Response, next: NextFunction) => {
+
+app.use((req: Request, res: Response, next: NextFunction) => {
   res.status(404).json({
-    status: 'Page does not exist'
+    status: 'route does not exist'
   });
 });
 

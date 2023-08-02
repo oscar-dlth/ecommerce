@@ -1,11 +1,21 @@
 import { token } from 'brandi';
-import { UserCommands } from '@application/users/userCommands';
-import { UserQueries } from '@application/users/userQueries';
 import { IUserRepository } from '@gateways/repositories/userRepository';
+import { IUserService } from '@domain/services/usersService';
+import { GetUsersQuery } from '@application/users/queries/getUsers/GetUsersQuery';
+import { GetUserByIdQuery } from '@application/users/queries/getUserById/GetUserByIdQuery';
+import { AuthService } from '@domain/services/AuthService';
+import { LoginCommand } from "@application/users/commands/login/LoginCommand";
+
 
 
 export const TOKENS = {
-  userCommands: token<UserCommands>('userCommands'),
-  userQueries: token<UserQueries>('userQueries'),
   userRepository: token<IUserRepository>('userRepository'),
+  usersService: token<IUserService>('userService'),
+  AuthService: token<AuthService>('AuthService')
 };
+
+export const CommandTokens = {
+  LoginCommand: token<LoginCommand>('LoginCommand'),
+  GetUsersQuery: token<GetUsersQuery>('GetUsersQuery'),
+  GetUserByIdQuery: token<GetUserByIdQuery>('GetUserByIdQuery'),
+}
