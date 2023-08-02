@@ -1,9 +1,9 @@
 import { token } from 'brandi';
 import { IUserRepository } from '@gateways/repositories/userRepository';
-import { IUserService } from '@gateways/services/usersService';
+import { IUserService } from '@domain/services/usersService';
 import { GetUsersQuery } from '@application/users/queries/getUsers/GetUsersQuery';
 import { GetUserByIdQuery } from '@application/users/queries/getUserById/GetUserByIdQuery';
-import { AuthService } from '@gateways/services/AuthService';
+import { AuthService } from '@domain/services/AuthService';
 import { LoginCommand } from "@application/users/commands/login/LoginCommand";
 
 

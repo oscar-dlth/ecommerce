@@ -1,7 +1,7 @@
 import jwt, { Secret, JwtPayload } from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import crypto from 'crypto';
-import { AuthService } from '@gateways/services/AuthService';
+import { AuthService } from '@domain/services/AuthService';
 
 dotenv.config();
 
