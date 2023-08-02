@@ -1,6 +1,6 @@
 import { TOKENS } from "@dependency-inyectiontokens";
 import { UserRepository } from "@infrastructure/db/mySql/repositories/userRepository";
-import { AuthServiceImp } from "@infrastructure/identity/JWT/AuthServiceImp";
+import { AuthServiceImp } from "@infrastructure/services/AuthServiceImp";
 import { UsersService } from "@infrastructure/services/usersService";
 import { Container } from "brandi";
 
