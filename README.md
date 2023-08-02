@@ -78,55 +78,79 @@ To achive this rule is implemented [Dependency Inversion Principle](https://es.w
 ## Folder structure.
 
 ```        
-└── stories-api/
-    ├── brandDI
-    ├── src/
-    │   ├── 1-domain/
-    │   │   ├── entities.ts
-    │   │   └── statusCodes.ts
-    │   ├── 2-application/
-    │   │   ├── common/
-    │   │   │   ├── errorResponseViewModel.ts
-    │   │   │   └── responseViewModel.ts
-    │   │   └── users/
-    │   │       ├── dtos/
-    │   │       │   ├── createUserDto.ts
-    │   │       │   └── updateUserDto.ts
-    │   │       ├── viewModels/
-    │   │       │   ├── userCreatedViewModel.ts
-    │   │       │   └── userViewModel.ts  
-    │   │       ├── userCommands.ts
-    │   │       └── userQueries.ts
-    │   ├── 3-gateways/
-    │   │   └── repositories/
-    │   │       └── database/
-    │   │           ├── base/
-    │   │           │   └── baseRepository.ts
-    │   │           └── userRepository.ts
-    │   ├── 4-infrastructure/
-    │   │   ├── db/
-    │   │   │   ├── mongoDB/
-    │   │   │   │   ├── repositories/
-│   │   │   │   │   |   ├── base/
-│   │   │   │   │   |   │   └── baseRepository.ts
-│   │   │   │   │   |   └── userRepository
-    │   │   │   │   ├── models/
-    │   │   │   │   │   └── user.ts
-    │   │   │   │   └── connection.ts
-    │   │   │   ├── ...
-    │   │   │   ├── another database implementations
-    │   │   │   └── ...
-    │   │   └── identity/
-    │   │       ├── middleware/
-    │   │       │   └── check-auth.ts
-    │   │       └── JWTManager.ts
-    │   └── 5.presentation/
-    │       ├── routes/
-    │       │   ├── index.ts (all routes)
-    │       │   └── user.ts ( user routes implementations)
-    │       └── index.tx ( express app)
-    └── tests/
-        └── user.spec.ts
+src/
+├── app/
+│   ├── 1-domain/
+│   │   ├── core/
+│   │   │   ├── common/
+│   │   │   │   └── statusCodes.ts
+│   │   │   └── interfaces/
+│   │   ├── entities/
+│   │   ├── services/
+│   │   └── statusCodes.ts
+│   ├── 2-application/
+│   │   ├── common/
+│   │   │   ├── errorResponseViewModel.ts
+│   │   │   └── responseViewModel.ts
+│   │   └── users/
+│   │       ├── commands/
+│   │       │   ├── createUser/
+│   │       │   │   ├── CreateUserCommand.ts
+│   │       │   │   └── CreateUserCommandHandler.ts
+│   │       │   └── updateUser/
+│   │       │       └── ...
+│   │       ├── queries/
+│   │       │   ├── getUserById/
+│   │       │   │   ├── GetUserByIdQuery.ts
+│   │       │   │   └── GetUserByIdQueryHandler.ts
+│   │       │   └── getUsers/
+│   │       │       └── ...
+│   │       └── viewModels/
+│   │           ├── userCreatedViewModel.ts
+│   │           ├── userViewModel.ts
+│   │           └── ...
+│   ├── 3-gateways/
+│   │   └── repositories/
+│   │       └── database/
+│   │           ├── base/
+│   │           │   └── baseRepository.ts
+│   │           └── userRepository.ts
+│   ├── 4-infrastructure/
+│   │   ├── db/
+│   │   │   ├── mySql/
+│   │   │   │   ├── resposotories/
+│   │   │   │   │   ├── base/
+│   │   │   │   │   │   └── baseRepository.ts
+│   │   │   │   │   └── userRepository
+│   │   │   │   ├── sequelize/
+│   │   │   │   │   ├── config/
+│   │   │   │   │   ├── migrations/
+│   │   │   │   │   ├── models/
+│   │   │   │   │   └── seeders/
+│   │   │   │   └── ...
+│   │   │   ├── another database implementations
+│   │   │   └── ...
+│   │   ├── identity/
+│   │   │   └── middleware/
+│   │   │       └── check-auth.ts
+│   │   └── services/
+│   │       ├── authServiceImp.ts
+│   │       └── usersService.ts
+│   └── 5.presentation/
+│       ├── routes/
+│       │   ├── index.ts (all routes)
+│       │   ├── user.ts ( user routes implementations)
+│       │   └── ...
+│       └── index.tx ( express app)
+├── dependency-inyection/
+│   ├── container.ts
+│   ├── initBrandiContainer.ts
+│   ├── registerRequestHandlers.ts
+│   ├── registerServices.ts
+│   └── tokens.ts
+└── tests/
+    ├── user.spec.ts
+    └── ...
 ```
 
 
