@@ -4,7 +4,7 @@ import { IBaseEntity } from "@domain/core/interfaces/base/IBaseEntity";
 import { BaseService } from "@domain/services/BaseService";
 import { IBaseRepository } from "@gateways/repositories/base/baseRepository";
 
-export abstract class BaseServiceImp<TEntity extends IBaseEntity, TViewModel extends BaseViewModel, TUpdateDto, TInsertDto> implements BaseService<TViewModel, TUpdateDto, TInsertDto>{
+export abstract class BaseServiceImp<TEntity extends IBaseEntity, TViewModel extends BaseViewModel, TInsertDto, TUpdateDto> implements BaseService<TViewModel, TInsertDto, TUpdateDto>{
     
     constructor(private repository: IBaseRepository<TEntity>, private searchFields: string[]){}
     
@@ -26,13 +26,13 @@ export abstract class BaseServiceImp<TEntity extends IBaseEntity, TViewModel ext
         return this.mapToViewModel(response);
     }
     
-    async update(dto: any): Promise<number> {
+    async update(dto: TUpdateDto): Promise<number> {
         const user: TEntity = this.getEntityToUpdate(dto)
         const result = await this.repository.update(user);
         return result;
     }
 
-    async insert(dto: any): Promise<TViewModel> {
+    async insert(dto: TInsertDto): Promise<TViewModel> {
         const user: TEntity = this.getEntityToInsert(dto);
         const userInserted = await this.repository.insert(user);
         return this.mapToViewModel(userInserted);
@@ -43,11 +43,11 @@ export abstract class BaseServiceImp<TEntity extends IBaseEntity, TViewModel ext
         return result;
     }
 
-    private getEntityToInsert(dto: any): TEntity {
-        return { ...dto, id: 0 };
+    private getEntityToInsert(dto: TInsertDto): TEntity {
+        return { ...<any>dto, id: 0 };
     }
 
-    private getEntityToUpdate(dto: any): TEntity {
-        return { ...dto };
+    private getEntityToUpdate(dto: TUpdateDto): TEntity {
+        return { ...<any>dto };
     }
 }
