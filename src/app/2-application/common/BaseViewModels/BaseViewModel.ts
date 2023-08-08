@@ -1,3 +1,3 @@
 export class BaseViewModel {
-    id: string;
+    id: number;
 }

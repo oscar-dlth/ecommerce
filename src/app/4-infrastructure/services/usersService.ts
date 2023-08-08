@@ -16,10 +16,18 @@ export class UsersService extends BaseServiceImp<User, UserViewModel, CreateUser
         const searchFields = [ 'nickName', 'email', 'name']
         super(userRepository, searchFields);
     }
+    
+    mapToEntityToInsert(dto: CreateUserCommand): User {
+        return { ...dto, id: 0 };
+    }
 
+    mapToEntityToUpdate(dto: UpdateUserCommand): User {
+        return { ...dto, password: dto.password };
+    }
+    
     mapToViewModel(entity: User): UserViewModel {
         return {
-            id: String(entity.id),
+            id: entity.id,
             name: entity.name,
             nickName: entity.nickName,
             email: entity.email,
