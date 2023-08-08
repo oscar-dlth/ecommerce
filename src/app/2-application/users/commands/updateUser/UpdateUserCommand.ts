@@ -5,5 +5,4 @@ export class UpdateUserCommand implements IRequest<number>{
     name!: string;
     nickName!: string;
     email!: string;
-    password!: string;
 }
