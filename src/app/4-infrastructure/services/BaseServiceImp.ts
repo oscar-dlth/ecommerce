@@ -9,6 +9,8 @@ export abstract class BaseServiceImp<TEntity extends IBaseEntity, TViewModel ext
     constructor(private repository: IBaseRepository<TEntity>, private searchFields: string[]){}
     
     abstract mapToViewModel(entity: TEntity): TViewModel;
+    abstract mapToEntityToInsert(dto: TInsertDto): TEntity;
+    abstract mapToEntityToUpdate(dto: TUpdateDto): TEntity;
     
     async get({ keyWord, page, size }: any): Promise<BasePagedViewModel<TViewModel>> {
         const data = await this.repository.getPagedRows(keyWord, this.searchFields, page, size);
@@ -27,13 +29,13 @@ export abstract class BaseServiceImp<TEntity extends IBaseEntity, TViewModel ext
     }
     
     async update(dto: TUpdateDto): Promise<number> {
-        const user: TEntity = this.getEntityToUpdate(dto)
+        const user: TEntity = this.mapToEntityToUpdate(dto)
         const result = await this.repository.update(user);
         return result;
     }
 
     async insert(dto: TInsertDto): Promise<TViewModel> {
-        const user: TEntity = this.getEntityToInsert(dto);
+        const user: TEntity = this.mapToEntityToInsert(dto);
         const userInserted = await this.repository.insert(user);
         return this.mapToViewModel(userInserted);
     }
@@ -41,13 +43,5 @@ export abstract class BaseServiceImp<TEntity extends IBaseEntity, TViewModel ext
     async delete(id: string): Promise<number> {
         const result = await this.repository.delete(id);
         return result;
-    }
-
-    private getEntityToInsert(dto: TInsertDto): TEntity {
-        return { ...<any>dto, id: 0 };
-    }
-
-    private getEntityToUpdate(dto: TUpdateDto): TEntity {
-        return { ...<any>dto };
     }
 }
