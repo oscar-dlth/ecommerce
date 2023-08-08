@@ -5,6 +5,8 @@ import { GetUsersQuery } from '@application/users/queries/getUsers/GetUsersQuery
 import { GetUserByIdQuery } from '@application/users/queries/getUserById/GetUserByIdQuery';
 import { AuthService } from '@domain/services/AuthService';
 import { LoginCommand } from "@application/users/commands/login/LoginCommand";
+import { UpdateUserCommand } from '@application/users/commands/updateUser/UpdateUserCommand';
+import { CreateUserCommand } from '@application/users/commands/createUser/CreateUserCommand';
 
 
 
@@ -16,6 +18,8 @@ export const TOKENS = {
 
 export const CommandTokens = {
   LoginCommand: token<LoginCommand>('LoginCommand'),
+  UpdateUserCommand: token<UpdateUserCommand>('UpdateUserCommand'),
+  CreateUserCommand: token<CreateUserCommand>('CreateUserCommand'),
   GetUsersQuery: token<GetUsersQuery>('GetUsersQuery'),
   GetUserByIdQuery: token<GetUserByIdQuery>('GetUserByIdQuery'),
 }

@@ -1,14 +1,15 @@
-import { IUserViewModel } from "@application/users/viewModels/userViewModel";
+import { UserViewModel } from "@application/users/viewModels/userViewModel";
 import { TOKENS } from "@dependency-inyection/tokens";
 import { IRequestHandler, requestHandler } from "mediatr-ts";
 import { container } from "@dependency-inyectioncontainer";
 import { GetUsersQuery } from "./GetUsersQuery";
+import { BasePagedViewModel } from "@application/common/BaseViewModels/BasePagedViewModel";
 
 
 @requestHandler(GetUsersQuery)
-export class GetUsersQueryHandler implements IRequestHandler<GetUsersQuery, IUserViewModel[]>{
-    async handle(request: GetUsersQuery): Promise<IUserViewModel[]> {
+export class GetUsersQueryHandler implements IRequestHandler<GetUsersQuery, BasePagedViewModel<UserViewModel>>{
+    async handle(request: GetUsersQuery): Promise<BasePagedViewModel<UserViewModel>> {
         const usersService = container.get(TOKENS.usersService);
-        return usersService.getUsers();
+        return usersService.get(request);
     }
 }

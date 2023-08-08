@@ -1,6 +1,6 @@
+import { BaseViewModel } from "@application/common/BaseViewModels/BaseViewModel";
 
-export interface IUserViewModel{
-    id: number;
+export class UserViewModel extends BaseViewModel{
     name: string;
     nickName: string;
     email: string;
