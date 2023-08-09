@@ -12,7 +12,7 @@ import { BaseServiceImp } from "./BaseServiceImp";
 import { User } from "@domain/entities/User";
 
 export class UsersService extends BaseServiceImp<User, UserViewModel, CreateUserCommand, UpdateUserCommand> {
-    constructor(private userRepository: IUserRepository, private authService: AuthService) {
+    constructor(userRepository: IUserRepository, private authService: AuthService) {
         const searchFields = [ 'nickName', 'email', 'name']
         super(userRepository, searchFields);
     }
@@ -36,11 +36,11 @@ export class UsersService extends BaseServiceImp<User, UserViewModel, CreateUser
 
     async signin(userDto: CreateUserCommand): Promise<UserCreatedViewModel> {
         const filter = { where: { email: userDto.email } };
-        const result = await this.userRepository.get(filter);
+        const result = await this.repository.get(filter);
 
         if (result.length === 0) {
             const user: IUser = { ...userDto, id: 0 }
-            const userInserted = await this.userRepository.insert(user);
+            const userInserted = await this.repository.insert(user);
             const { token, duration: expiresIn } = this.authService.sign(userInserted.email, userInserted.name);
             return { token, expiresIn };
         } else {

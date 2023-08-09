@@ -6,7 +6,7 @@ import { IBaseRepository } from "@gateways/repositories/base/baseRepository";
 
 export abstract class BaseServiceImp<TEntity extends IBaseEntity, TViewModel extends BaseViewModel, TInsertDto, TUpdateDto> implements BaseService<TViewModel, TInsertDto, TUpdateDto>{
     
-    constructor(private repository: IBaseRepository<TEntity>, private searchFields: string[]){}
+    constructor(protected repository: IBaseRepository<TEntity>, private searchFields: string[]){}
     
     abstract mapToViewModel(entity: TEntity): TViewModel;
     abstract mapToEntityToInsert(dto: TInsertDto): TEntity;

@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import userRouter from './user';
+import produtsRouter from './products';
 const express = require('express');
 
 const router: Router = express.Router()
@@ -11,6 +12,8 @@ router
   .get('/users', userRouter.getUsers)
   .get('/users/:id', userRouter.getUserById)
   .delete('/users/:id', userRouter.deleteUser)
-  .put('/users', userRouter.updateUser)
+  .put('/users', userRouter.updateUser);
+
+router.get('/products', produtsRouter.getProducts )
 
 export default router;
