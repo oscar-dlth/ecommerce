@@ -1,5 +1,5 @@
 import { IBaseRepository } from "@gateways/repositories/base/baseRepository";
-import { IBaseEntity } from "@domain/core/interfaces/base/IBaseEntity";
+import { IBaseEntity } from "@domain/core/interfaces/IBaseEntity";
 import { Op } from "sequelize";
 
 
@@ -20,7 +20,8 @@ export class BaseRepository<T extends IBaseEntity> implements IBaseRepository<T>
         const response = await this.entity.findAndCountAll({
             where,
             offset: page * size,
-            limit: size
+            limit: size,
+            include: { all: true }
         });
         return response;
     }

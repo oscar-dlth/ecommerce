@@ -1,6 +1,6 @@
-import { ICart } from "@domain/core/interfaces/ICart";
+import { IBaseEntity } from "@domain/core/interfaces/IBaseEntity";
 
-export class Cart implements ICart {
+export class Cart implements IBaseEntity {
     id: number;
     total: number;
     userId: number;

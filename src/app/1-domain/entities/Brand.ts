@@ -1,6 +1,6 @@
-import { IBrand } from "@domain/core/interfaces/IBrand";
+import { IBaseEntity } from "@domain/core/interfaces/IBaseEntity";
 
-export class Brand implements IBrand {
+export class Brand implements IBaseEntity {
     id: number;
     code: string;
     name: string;

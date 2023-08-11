@@ -1,6 +1,6 @@
-import { IAddress } from "@domain/core/interfaces/IAddress";
+import { IBaseEntity } from "@domain/core/interfaces/IBaseEntity";
 
-export class Address implements IAddress {
+export class Address implements IBaseEntity {
     id: number;
     name: string;
     country: string;

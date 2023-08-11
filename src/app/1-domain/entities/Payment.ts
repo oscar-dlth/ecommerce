@@ -1,6 +1,6 @@
-import { IPayment } from "@domain/core/interfaces/IPayment";
+import { IBaseEntity } from "@domain/core/interfaces/IBaseEntity";
 
-export class Payment implements IPayment {
+export class Payment implements IBaseEntity {
     id: number;
     amount: number;
     type: string;

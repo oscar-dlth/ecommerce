@@ -132,7 +132,7 @@ const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
     }
 }
 
-const router = {
+export const userOperations = {
     signIn,
     getUsers,
     getUserById,
@@ -141,5 +141,3 @@ const router = {
     login,
     createUser
 };
-
-export default router;

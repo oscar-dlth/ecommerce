@@ -1,4 +1,4 @@
-import { IBaseEntity } from "@domain/core/interfaces/base/IBaseEntity";
+import { IBaseEntity } from "@domain/core/interfaces/IBaseEntity";
 
 export interface IBaseRepository<T extends IBaseEntity>{
     get(filter?: any): Promise<Array<T>>;

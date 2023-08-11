@@ -1,37 +1,35 @@
 import { CreateUserCommand } from "@application/users/commands/createUser/CreateUserCommand";
-import { UpdateUserCommand } from "@application/users/commands/updateUser/UpdateUserCommand";
 import { UserCreatedViewModel } from "@application/users/viewModels/userCreatedViewModel";
-import { UserViewModel } from "@application/users/viewModels/userViewModel";
 import { TOKENS } from "@dependency-inyection/tokens";
 import { statusCodes } from "@domain/core/common/statusCodes";
 import { IUser } from "@domain/core/interfaces/IUser";
 import { IUserRepository } from "@gateways/repositories/userRepository";
 import { injected } from "brandi";
 import { AuthService } from "@domain/services/AuthService";
-import { BaseServiceImp } from "./BaseServiceImp";
 import { User } from "@domain/entities/User";
+import { BaseCommand } from "@application/common/baseCommands/BaseCommand";
+import { ICreateOperation } from "@domain/services/base/CreateOperation";
+import { IDeleteOperation } from "@domain/services/base/DeleteOperation";
+import { IReadOperation } from "@domain/services/base/ReadOperation";
+import { IUpdateOperation } from "@domain/services/base/UpdateOperation";
+import { CreateOperation } from "./base/CreateOperation";
+import { DeleteOperation } from "./base/DeleteOperation";
+import { ReadOperation } from "./base/ReadOperation";
+import { UpdateOperation } from "./base/UpdateOperation";
+import { IUserService } from "@domain/services/usersService";
 
-export class UsersService extends BaseServiceImp<User, UserViewModel, CreateUserCommand, UpdateUserCommand> {
+export class UsersService implements IUserService {
+    private readUserOperation: IReadOperation<User>;
+    private createUserOperation: ICreateOperation<User>;
+    private updateUserOperation: IUpdateOperation;
+    private deleteUserOperation: IDeleteOperation;
+
     constructor(private userRepository: IUserRepository, private authService: AuthService) {
         const searchFields = [ 'nickName', 'email', 'name']
-        super(userRepository, searchFields);
-    }
-    
-    mapToEntityToInsert(dto: CreateUserCommand): User {
-        return { ...dto, id: 0 };
-    }
-
-    mapToEntityToUpdate(dto: UpdateUserCommand): User {
-        return { ...dto, password: dto.password };
-    }
-    
-    mapToViewModel(entity: User): UserViewModel {
-        return {
-            id: entity.id,
-            name: entity.name,
-            nickName: entity.nickName,
-            email: entity.email,
-        };
+        this.readUserOperation = new ReadOperation(userRepository, searchFields);
+        this.createUserOperation = new CreateOperation(userRepository);
+        this.updateUserOperation = new UpdateOperation(userRepository);
+        this.deleteUserOperation = new DeleteOperation(userRepository);
     }
 
     async signin(userDto: CreateUserCommand): Promise<UserCreatedViewModel> {
@@ -50,6 +48,27 @@ export class UsersService extends BaseServiceImp<User, UserViewModel, CreateUser
             throw error;
         }
     }
+
+    get(params: { keyWord: string; page: number; size: number; }): Promise<{ rows: User[]; count: number; }> {
+        return this.readUserOperation.get(params);
+    }
+
+    getById(id: string): Promise<User | null> {
+        return this.readUserOperation.getById(id);
+    }
+
+    insert<TCommand extends BaseCommand>(dto: TCommand): Promise<User> {
+        return this.createUserOperation.insert(dto);
+    }
+
+    update<TCommand extends BaseCommand>(dto: TCommand): Promise<number> {
+        return this.updateUserOperation.update(dto);
+    }
+
+    delete(id: string): Promise<number> {
+        return this.deleteUserOperation.delete(id);
+    }
 }
+
 
 injected(UsersService, TOKENS.userRepository, TOKENS.AuthService);
