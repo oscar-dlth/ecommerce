@@ -1,5 +1,5 @@
 import { IBaseRepository } from "@gateways/repositories/base/baseRepository";
-import { IBaseEntity } from "@domain/core/interfaces/base/IBaseEntity";
+import { IBaseEntity } from "@domain/core/interfaces/IBaseEntity";
 import { Op } from "sequelize";
 
 

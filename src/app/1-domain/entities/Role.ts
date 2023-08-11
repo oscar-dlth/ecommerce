@@ -1,6 +1,6 @@
-import { IRole } from "@domain/core/interfaces/IRole";
+import { IBaseEntity } from "@domain/core/interfaces/IBaseEntity";
 
-export class Role implements IRole {
+export class Role implements IBaseEntity {
     id: number;
     code: string;
     name: string;

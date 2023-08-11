@@ -1,6 +1,6 @@
-import { IProduct } from "@domain/core/interfaces/IProduct";
+import { IBaseEntity } from "@domain/core/interfaces/IBaseEntity";
 
-export class Product implements IProduct {
+export class Product implements IBaseEntity {
     id: number;
     name: string;
     sku: string;

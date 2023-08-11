@@ -1,6 +1,6 @@
-import { IUser } from "@domain/core/interfaces/IUser";
+import { IBaseEntity } from "@domain/core/interfaces/IBaseEntity";
 
-export class User implements IUser {
+export class User implements IBaseEntity {
     id: number;
     name: string;
     nickName: string;

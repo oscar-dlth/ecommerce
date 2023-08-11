@@ -1,9 +1,11 @@
 import { CreateUserCommand } from "@application/users/commands/createUser/CreateUserCommand"
-import { UpdateUserCommand } from "@application/users/commands/updateUser/UpdateUserCommand";
 import { UserCreatedViewModel } from "@application/users/viewModels/userCreatedViewModel";
-import { UserViewModel } from "@application/users/viewModels/userViewModel";
-import { BaseService } from "./BaseService";
+import { User } from "@domain/entities/User";
+import { IReadOperation } from "./base/ReadOperation";
+import { ICreateOperation } from "./base/CreateOperation";
+import { IUpdateOperation } from "./base/UpdateOperation";
+import { IDeleteOperation } from "./base/DeleteOperation";
 
-export interface IUserService extends BaseService<UserViewModel, CreateUserCommand, UpdateUserCommand> {
-    signin(userDto: CreateUserCommand): Promise<UserCreatedViewModel>;
+export interface IUserService extends IReadOperation<User>, ICreateOperation<User>, IUpdateOperation, IDeleteOperation {
+    signin(userDto: CreateUserCommand) : Promise<UserCreatedViewModel>;
 }

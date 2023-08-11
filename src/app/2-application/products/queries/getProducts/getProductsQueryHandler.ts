@@ -5,11 +5,15 @@ import { BasePagedViewModel } from "@application/common/BaseViewModels/BasePaged
 import { TOKENS } from "@dependency-inyection/tokens";
 import { container } from "@dependency-inyectioncontainer";
 import { ProductViewModel } from "@application/products/viewModels/productViewModel";
+import { PagedViewModelMapper } from "@application/common/utils/mapToPagedViewModel";
+import { mapToViewModel } from "@application/products/mappers/mapToViewModel";
 
 @requestHandler(GetProductsQuery)
 export class GetProductsQueryHandler implements IRequestHandler<GetProductsQuery, BasePagedViewModel<ProductViewModel>>{
     async handle(request: GetUsersQuery): Promise<BasePagedViewModel<ProductViewModel>> {
         const productsService = container.get(TOKENS.productsService);
-        return productsService.get(request);
+        const result =  await productsService.get(request);
+        const mapper =  new PagedViewModelMapper(mapToViewModel);
+        return mapper.mapToPagedViewModel(result);
     }
 }

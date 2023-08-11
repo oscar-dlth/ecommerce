@@ -1,6 +1,6 @@
-import { IOrder } from "@domain/core/interfaces/IOrder";
+import { IBaseEntity } from "@domain/core/interfaces/IBaseEntity";
 
-export class Order implements IOrder {
+export class Order implements IBaseEntity {
     id: number;
     total: number;
     userId: number;
