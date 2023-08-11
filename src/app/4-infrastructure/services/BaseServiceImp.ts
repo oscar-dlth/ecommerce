@@ -8,7 +8,7 @@ export abstract class BaseServiceImp<TEntity extends IBaseEntity, TViewModel ext
     
     constructor(protected repository: IBaseRepository<TEntity>, private searchFields: string[]){}
     
-    abstract mapToViewModel(entity: TEntity): TViewModel;
+    abstract mapToViewModel(entity: TEntity): TViewModel; 
     abstract mapToEntityToInsert(dto: TInsertDto): TEntity;
     abstract mapToEntityToUpdate(dto: TUpdateDto): TEntity;
     

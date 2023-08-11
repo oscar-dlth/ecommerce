@@ -13,14 +13,17 @@ import { CreateProductCommand } from '@application/products/commands/createProdu
 import { GetProductsQuery } from '@application/products/queries/getProducts/getProductsQuery';
 import { GetProductByIdQuery } from '@application/products/queries/getProductById/getProductByIdQuery';
 import { UpdateProductCommand } from '@application/products/commands/updateProduct/updateProductCommand';
-
-
+import { ICategoryService } from '@domain/services/CategoryService';
+import { GetCategoriesQuery } from '@application/categories/queries/getCategories/getCategoriesQuery';
+import { ICategoryRepository } from '@gateways/repositories/CategoryRepository';
 
 export const TOKENS = {
   userRepository: token<IUserRepository>('userRepository'),
   ProductRepository: token<IProductRepository>('ProductRepository'),
+  CategoryRepository: token<ICategoryRepository>('CategoryRepository'),
   usersService: token<IUserService>('userService'),
   productsService: token<IProductsService>('productsService'),
+  categoryService: token<ICategoryService>('categoryService'),
   AuthService: token<AuthService>('AuthService')
 };
 
@@ -38,3 +41,8 @@ export const ProductCommandTokens = {
   GetProductsQuery: token<GetProductsQuery>('GetProductsQuery'),
   GetProductByIdQuery: token<GetProductByIdQuery>('GetProductByIdQuery'),
 }
+
+export const CategoriesCommandTokens = {
+  GetCategoriesQuery: token<GetCategoriesQuery>('GetCategoriesQuery'),
+}
+

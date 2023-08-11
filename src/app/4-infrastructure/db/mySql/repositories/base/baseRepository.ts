@@ -20,7 +20,8 @@ export class BaseRepository<T extends IBaseEntity> implements IBaseRepository<T>
         const response = await this.entity.findAndCountAll({
             where,
             offset: page * size,
-            limit: size
+            limit: size,
+            include: { all: true }
         });
         return response;
     }
