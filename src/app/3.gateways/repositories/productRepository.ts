@@ -1,4 +1,4 @@
-import { IProduct } from "@domain/core/interfaces/IProduct";
+import { Product } from "@domain/entities/Product";
 import { IBaseRepository } from "./base/baseRepository";
 
-export interface IProductRepository extends IBaseRepository<IProduct> {}
+export interface IProductRepository extends IBaseRepository<Product> {}
