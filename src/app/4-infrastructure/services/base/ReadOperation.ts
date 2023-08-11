@@ -1,4 +1,4 @@
-import { IBaseEntity } from "@domain/core/interfaces/base/IBaseEntity";
+import { IBaseEntity } from "@domain/core/interfaces/IBaseEntity";
 import { IReadOperation } from "@domain/services/base/ReadOperation";
 import { IBaseRepository } from "@gateways/repositories/base/baseRepository";
 
