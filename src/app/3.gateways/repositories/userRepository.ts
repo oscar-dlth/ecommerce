@@ -1,4 +1,4 @@
+import { User } from "@domain/entities/User";
 import { IBaseRepository } from "./base/baseRepository";
-import { IUser } from "@domain/core/interfaces/IUser";
 
-export interface IUserRepository extends IBaseRepository<IUser> {}
+export interface IUserRepository extends IBaseRepository<User> {}

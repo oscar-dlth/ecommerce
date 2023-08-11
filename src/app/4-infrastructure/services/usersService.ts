@@ -2,7 +2,6 @@ import { CreateUserCommand } from "@application/users/commands/createUser/Create
 import { UserCreatedViewModel } from "@application/users/viewModels/userCreatedViewModel";
 import { TOKENS } from "@dependency-inyection/tokens";
 import { statusCodes } from "@domain/core/common/statusCodes";
-import { IUser } from "@domain/core/interfaces/IUser";
 import { IUserRepository } from "@gateways/repositories/userRepository";
 import { injected } from "brandi";
 import { AuthService } from "@domain/services/AuthService";
@@ -37,7 +36,7 @@ export class UsersService implements IUserService {
         const result = await this.userRepository.get(filter);
 
         if (result.length === 0) {
-            const user: IUser = { ...userDto, id: 0 }
+            const user: User = { ...userDto, id: 0 }
             const userInserted = await this.userRepository.insert(user);
             const { token, duration: expiresIn } = this.authService.sign(userInserted.email, userInserted.name);
             return { token, expiresIn };
