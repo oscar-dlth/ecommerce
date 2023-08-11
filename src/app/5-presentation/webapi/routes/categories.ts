@@ -27,8 +27,6 @@ const getCategories = async (req: Request, res: Response, next: NextFunction) =>
     }
 }
 
-const router = {
+export const categoriesOperations =  {
     getCategories
-};
-
-export default router;
+};;

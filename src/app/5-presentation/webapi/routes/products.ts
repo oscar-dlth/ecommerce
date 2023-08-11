@@ -32,8 +32,7 @@ const getProducts = async (req: Request, res: Response, next: NextFunction) => {
     }
 }
 
-const router = {
+export const productsOperations = {
     getProducts
 };
 
-export default router;

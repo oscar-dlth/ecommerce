@@ -1,22 +1,30 @@
-import { Router } from 'express';
-import userRouter from './user';
-import produtsRouter from './products';
-import categoriesRouter from './categories';
-const express = require('express');
+import express, { Router } from 'express';
+import { categoriesOperations } from './categories';
+import { productsOperations } from './products';
+import { userOperations } from './user';
 
-const router: Router = express.Router()
+const router: Router = express.Router();
+const usersRouter: Router = express.Router();
+const productsRouter: Router = express.Router();
+const categoriesRouter: Router = express.Router();
 
-router
-  .post('/users/signup', userRouter.signIn)
-  .post('/users/', userRouter.createUser)
-  .post('/users/login', userRouter.login)
-  .get('/users', userRouter.getUsers)
-  .get('/users/:id', userRouter.getUserById)
-  .delete('/users/:id', userRouter.deleteUser)
-  .put('/users', userRouter.updateUser);
+usersRouter
+  .post('/signup', userOperations.signIn)
+  .post('/', userOperations.createUser)
+  .post('/login', userOperations.login)
+  .get('', userOperations.getUsers)
+  .get('/:id', userOperations.getUserById)
+  .delete('/:id', userOperations.deleteUser)
+  .put('', userOperations.updateUser);
 
-router.get('/products', produtsRouter.getProducts);
+productsRouter
+  .get('/', productsOperations.getProducts);
 
-router.get('/categories', categoriesRouter.getCategories);
+categoriesRouter
+  .get('/', categoriesOperations.getCategories);
+
+router.use('/users', usersRouter);
+router.use('/products', productsRouter);
+router.use('/categories', categoriesRouter);
 
 export default router;
