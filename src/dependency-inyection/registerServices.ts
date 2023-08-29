@@ -1,11 +1,11 @@
 import { TOKENS } from "@dependency-inyectiontokens";
 import { CategoryRepository } from "@infrastructure/db/mySql/repositories/CategoryRepository";
-import { ProductRepository } from "@infrastructure/db/mySql/repositories/producctRepository";
-import { UserRepository } from "@infrastructure/db/mySql/repositories/userRepository";
-import { AuthServiceImp } from "@infrastructure/services/AuthServiceImp";
+import { ProductRepository } from "@infrastructure/db/mySql/repositories/ProductRepository";
+import { UserRepository } from "@infrastructure/db/mySql/repositories/UserRepository";
+import { AuthService } from "@infrastructure/services/AuthService";
 import { CategoryService } from "@infrastructure/services/CategoryService";
 import { ProductsService } from "@infrastructure/services/productsService";
-import { UsersService } from "@infrastructure/services/usersService";
+import { UsersService } from "@infrastructure/services/UserService";
 import { Container } from "brandi";
 
 export const registerServices = (container: Container) => {
@@ -37,7 +37,7 @@ export const registerServices = (container: Container) => {
 
   container
     .bind(TOKENS.AuthService)
-    .toInstance(AuthServiceImp)
+    .toInstance(AuthService)
     .inSingletonScope();
 
 
