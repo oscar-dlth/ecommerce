@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { UserCreatedViewModel } from '@application/users/viewModels/userCreatedViewModel';
 import { UserViewModel } from '@application/users/viewModels/userViewModel';
 import { handleError } from '../utils';
-import { IResponseViewModel } from '@application/common/responseViewModel';
+import { ResponseViewModel } from '@application/common/responseViewModel';
 import { Mediator } from 'mediatr-ts';
 import { GetUsersQuery } from '@application/users/queries/getUsers/GetUsersQuery';
 import { UpdateUserCommand } from '@application/users/commands/updateUser/UpdateUserCommand';
@@ -21,7 +21,7 @@ const getProducts = async (req: Request, res: Response, next: NextFunction) => {
         query.page =  Number(req.query.page);
         const result = await mediator.send<{rows: ProductViewModel[], count: number}>(query);
         
-        const responseData: IResponseViewModel<BasePagedViewModel<ProductViewModel>> = {
+        const responseData: ResponseViewModel<BasePagedViewModel<ProductViewModel>> = {
             status: 'OK',
             data: result
         };

@@ -3,7 +3,7 @@ import { Category } from "@domain/entities/Category";
 import { BaseCommand } from "@application/common/baseCommands/BaseCommand";
 import { ReadOperation } from "./base/ReadOperation";
 import { CreateOperation} from "./base/CreateOperation";
-import { TOKENS } from "@dependency-inyectiontokens";
+import { TOKENS } from "@dependency-inyection/tokens";
 import { ICategoryService } from "@domain/services/CategoryService";
 import { ICreateOperation } from "@domain/services/base/CreateOperation";
 import { IReadOperation } from "@domain/services/base/ReadOperation";

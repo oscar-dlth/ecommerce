@@ -2,5 +2,8 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  forceExit: true
+  forceExit: true,
+  "testMatch": [
+    "**/?(*.)+(spec|test).js"
+  ]
 };

@@ -1,6 +1,6 @@
-import { container } from "@dependency-inyectioncontainer"
-import { registerRequestHandlers } from "@dependency-inyectionregisterRequestHandlers";
-import { registerServices } from "@dependency-inyectionregisterServices";
+import { container } from "@dependency-inyection/container"
+import { registerRequestHandlers } from "@dependency-inyection/registerRequestHandlers";
+import { registerServices } from "@dependency-inyection/registerServices";
 
 export const initBrandiContainer = ()=>{
     registerServices(container);
