@@ -3,7 +3,7 @@ import { IRequestHandler, requestHandler } from "mediatr-ts";
 import { GetProductsQuery } from "./getProductsQuery";
 import { BasePagedViewModel } from "@application/common/BaseViewModels/BasePagedViewModel";
 import { TOKENS } from "@dependency-inyection/tokens";
-import { container } from "@dependency-inyectioncontainer";
+import { container } from "@dependency-inyection/container";
 import { ProductViewModel } from "@application/products/viewModels/productViewModel";
 import { PagedViewModelMapper } from "@application/common/utils/mapToPagedViewModel";
 import { mapToViewModel } from "@application/products/mappers/mapToViewModel";

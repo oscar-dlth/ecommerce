@@ -4,10 +4,9 @@ import app from "@presentation/webapi";
 
 const PORT = process.env.PORT || 3000
 
-db.sequelize.sync().then( ()=> {
-  app.listen(PORT, () => {
-    initBrandiContainer();
-    console.log(`Listening on PORT: ${PORT}`);
+app.listen(PORT, () => {
+  console.log(`Listening on PORT: ${PORT}`);
+  db.sequelize.sync().then(() => {
   })
 });
 

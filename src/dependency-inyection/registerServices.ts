@@ -1,4 +1,4 @@
-import { TOKENS } from "@dependency-inyectiontokens";
+import { TOKENS } from "@dependency-inyection/tokens";
 import { CategoryRepository } from "@infrastructure/db/mySql/repositories/CategoryRepository";
 import { ProductRepository } from "@infrastructure/db/mySql/repositories/ProductRepository";
 import { UserRepository } from "@infrastructure/db/mySql/repositories/UserRepository";

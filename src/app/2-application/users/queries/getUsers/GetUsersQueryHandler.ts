@@ -1,7 +1,7 @@
 import { UserViewModel } from "@application/users/viewModels/userViewModel";
 import { TOKENS } from "@dependency-inyection/tokens";
 import { IRequestHandler, requestHandler } from "mediatr-ts";
-import { container } from "@dependency-inyectioncontainer";
+import { container } from "@dependency-inyection/container";
 import { GetUsersQuery } from "./GetUsersQuery";
 import { BasePagedViewModel } from "@application/common/BaseViewModels/BasePagedViewModel";
 import { PagedViewModelMapper } from "@application/common/utils/mapToPagedViewModel";

@@ -2,7 +2,7 @@ import { GetUsersQuery } from "@application/users/queries/getUsers/GetUsersQuery
 import { IRequestHandler, requestHandler } from "mediatr-ts";
 import { BasePagedViewModel } from "@application/common/BaseViewModels/BasePagedViewModel";
 import { TOKENS } from "@dependency-inyection/tokens";
-import { container } from "@dependency-inyectioncontainer";
+import { container } from "@dependency-inyection/container";
 import { GetCategoriesQuery } from "./getCategoriesQuery";
 import { CategoryViewModel } from "@application/categories/viewModels/CategoryViewModel";
 import { PagedViewModelMapper } from "@application/common/utils/mapToPagedViewModel";

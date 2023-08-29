@@ -5,7 +5,7 @@ import { LoginCommandHandler } from "@application/users/commands/login/LoginComm
 import { UpdateUserCommandHandler } from "@application/users/commands/updateUser/UpdateUserCommandHandler";
 import { GetUserByIdQueryHandler } from "@application/users/queries/getUserById/GetUserByIdQueryHandler";
 import { GetUsersQueryHandler } from "@application/users/queries/getUsers/GetUsersQueryHandler";
-import { CategoriesCommandTokens, UserCommandTokens, ProductCommandTokens } from "@dependency-inyectiontokens";
+import { CategoriesCommandTokens, UserCommandTokens, ProductCommandTokens } from "@dependency-inyection/tokens";
 import { Container } from "brandi";
 
 export const registerRequestHandlers = (container: Container) => {

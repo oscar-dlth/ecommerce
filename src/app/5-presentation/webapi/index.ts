@@ -1,9 +1,10 @@
 import {Express, NextFunction, Response, Request } from "express"
 import router from "./routes";
+import { initBrandiContainer } from "@dependency-inyection/initBrandiContainer";
 const dotenv = require('dotenv');
 const express = require('express');
 
-
+initBrandiContainer();
 dotenv.config();
 const app: Express = express();
 

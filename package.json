@@ -7,7 +7,7 @@
     "build": "tsc && tsc-alias",
     "start": "npm run build && node dist/index.js",
     "dev": "concurrently \"npx tsc && tsc-alias --watch\" \"nodemon -q dist/index.js\"",
-    "test": "npx jest --detectOpenHandles",
+    "test": "npm run build && npx jest --detectOpenHandles",
     "migrate": "npx sequelize-cli db:migrate",
     "seed:all": "npx sequelize-cli db:seed:all"
   },
