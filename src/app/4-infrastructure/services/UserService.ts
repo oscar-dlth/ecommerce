@@ -4,7 +4,6 @@ import { TOKENS } from "@dependency-inyection/tokens";
 import { statusCodes } from "@domain/core/common/statusCodes";
 import { IUserRepository } from "@gateways/repositories/userRepository";
 import { injected } from "brandi";
-import { AuthService } from "@domain/services/AuthService";
 import { User } from "@domain/entities/User";
 import { BaseCommand } from "@application/common/baseCommands/BaseCommand";
 import { ICreateOperation } from "@domain/services/base/CreateOperation";
@@ -16,6 +15,7 @@ import { DeleteOperation } from "./base/DeleteOperation";
 import { ReadOperation } from "./base/ReadOperation";
 import { UpdateOperation } from "./base/UpdateOperation";
 import { IUserService } from "@domain/services/usersService";
+import { IAuthService } from "@domain/services/AuthService";
 
 export class UsersService implements IUserService {
     private readUserOperation: IReadOperation<User>;
@@ -23,7 +23,7 @@ export class UsersService implements IUserService {
     private updateUserOperation: IUpdateOperation;
     private deleteUserOperation: IDeleteOperation;
 
-    constructor(private userRepository: IUserRepository, private authService: AuthService) {
+    constructor(private userRepository: IUserRepository, private authService: IAuthService) {
         const searchFields = [ 'nickName', 'email', 'name']
         this.readUserOperation = new ReadOperation(userRepository, searchFields);
         this.createUserOperation = new CreateOperation(userRepository);

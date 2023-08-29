@@ -1,11 +1,11 @@
 import jwt, { Secret, JwtPayload } from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import crypto from 'crypto';
-import { AuthService } from '@domain/services/AuthService';
+import { IAuthService } from '@domain/services/AuthService';
 
 dotenv.config();
 
-export class AuthServiceImp implements AuthService {
+export class AuthService implements IAuthService {
     public sign(email: string, name: string) : { token: string, duration: string }{
         const jwtKey: any = process.env.JWT_KEY;
         const jwtTokenDuration: any = process.env.TOKEN_DURATION;

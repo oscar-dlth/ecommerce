@@ -5,15 +5,15 @@ import { LoginCommandHandler } from "@application/users/commands/login/LoginComm
 import { UpdateUserCommandHandler } from "@application/users/commands/updateUser/UpdateUserCommandHandler";
 import { GetUserByIdQueryHandler } from "@application/users/queries/getUserById/GetUserByIdQueryHandler";
 import { GetUsersQueryHandler } from "@application/users/queries/getUsers/GetUsersQueryHandler";
-import { CategoriesCommandTokens, CommandTokens, ProductCommandTokens } from "@dependency-inyectiontokens";
+import { CategoriesCommandTokens, UserCommandTokens, ProductCommandTokens } from "@dependency-inyectiontokens";
 import { Container } from "brandi";
 
 export const registerRequestHandlers = (container: Container) => {
-    container.bind(CommandTokens.GetUsersQuery).toInstance(<any>GetUsersQueryHandler).inSingletonScope();
-    container.bind(CommandTokens.GetUserByIdQuery).toInstance(<any>GetUserByIdQueryHandler).inSingletonScope();
-    container.bind(CommandTokens.LoginCommand).toInstance(<any>LoginCommandHandler).inSingletonScope();
-    container.bind(CommandTokens.UpdateUserCommand).toInstance(<any>UpdateUserCommandHandler).inSingletonScope();
-    container.bind(CommandTokens.CreateUserCommand).toInstance(<any>CreateUserCommandHandler).inSingletonScope();
+    container.bind(UserCommandTokens.GetUsersQuery).toInstance(<any>GetUsersQueryHandler).inSingletonScope();
+    container.bind(UserCommandTokens.GetUserByIdQuery).toInstance(<any>GetUserByIdQueryHandler).inSingletonScope();
+    container.bind(UserCommandTokens.LoginCommand).toInstance(<any>LoginCommandHandler).inSingletonScope();
+    container.bind(UserCommandTokens.UpdateUserCommand).toInstance(<any>UpdateUserCommandHandler).inSingletonScope();
+    container.bind(UserCommandTokens.CreateUserCommand).toInstance(<any>CreateUserCommandHandler).inSingletonScope();
     ///Products
     container.bind(ProductCommandTokens.GetProductsQuery).toInstance(<any>GetProductsQueryHandler).inSingletonScope();
     ///Categories
