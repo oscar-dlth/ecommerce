@@ -2,7 +2,7 @@ import { CreateUserCommand } from "@application/users/commands/createUser/Create
 import { UserCreatedViewModel } from "@application/users/viewModels/userCreatedViewModel";
 import { TOKENS } from "@dependency-inyection/tokens";
 import { statusCodes } from "@domain/core/common/statusCodes";
-import { IUserRepository } from "@gateways/repositories/userRepository";
+import { IUserRepository } from "@gateways/repositories/IUserRepository";
 import { injected } from "brandi";
 import { User } from "@domain/entities/User";
 import { BaseCommand } from "@application/common/baseCommands/BaseCommand";
