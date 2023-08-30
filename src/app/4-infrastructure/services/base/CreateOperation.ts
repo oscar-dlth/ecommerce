@@ -7,13 +7,7 @@ export class CreateOperation<TEntity extends IBaseEntity> implements ICreateOper
     
     constructor(protected repository: IBaseRepository<TEntity>){}
     
-    mapToEntityToInsert<TCommand extends BaseCommand>(dto: TCommand): TEntity{
-        return <any>{...dto, id: 0};
-    }
-
     async insert<TCommand extends BaseCommand>(dto: TCommand): Promise<TEntity> {
-        const user: TEntity = this.mapToEntityToInsert<TCommand>(dto);
-        const userInserted = await this.repository.insert(user);
-        return userInserted;
+        return await this.repository.insert(<any>dto);
     }
 }
