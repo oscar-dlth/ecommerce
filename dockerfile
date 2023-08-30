@@ -5,13 +5,12 @@ FROM node:16.20.0
 WORKDIR /
 
 # Copy package.json and package-lock.json
-COPY .
+COPY . .
 
 # Install dependencies
 RUN npm install
 
 # Copy TypeScript source files
-COPY . .
 
 # Build the TypeScript application
 RUN npm run build
