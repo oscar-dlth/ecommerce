@@ -4,7 +4,6 @@ import { initBrandiContainer } from "@dependency-inyection/initBrandiContainer";
 const dotenv = require('dotenv');
 const express = require('express');
 
-initBrandiContainer();
 dotenv.config();
 const app: Express = express();
 
@@ -37,5 +36,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     status: 'route does not exist'
   });
 });
+
+initBrandiContainer();
 
 export default app;

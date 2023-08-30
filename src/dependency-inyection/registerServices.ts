@@ -9,12 +9,6 @@ import { UsersService } from "@infrastructure/services/UserService";
 import { Container } from "brandi";
 
 export const registerServices = (container: Container) => {
-
-  container
-    .bind(TOKENS.UserRepository)
-    .toInstance(UserRepository)
-    .inSingletonScope();
-  
   container
     .bind(TOKENS.ProductRepository)
     .toInstance(ProductRepository)
@@ -44,6 +38,11 @@ export const registerServices = (container: Container) => {
     container
     .bind(TOKENS.categoryService)
     .toInstance(CategoryService)
+    .inSingletonScope();
+
+    container
+    .bind(TOKENS.UserRepository)
+    .toInstance(UserRepository)
     .inSingletonScope();
 }
 
