@@ -1,7 +1,7 @@
 import { IRequestHandler, requestHandler } from "mediatr-ts";
 import { DeleteUserCommand } from "./DeleteUserCommand";
-import { container } from "@dependency-inyectioncontainer";
-import { TOKENS } from "@dependency-inyectiontokens";
+import { container } from "@dependency-inyection/container";
+import { TOKENS } from "@dependency-inyection/tokens";
 
 @requestHandler(DeleteUserCommand)
 export class DeleteUserCommandHandler implements IRequestHandler<DeleteUserCommand, number>{

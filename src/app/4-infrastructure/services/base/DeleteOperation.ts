@@ -1,6 +1,6 @@
 import { IBaseEntity } from "@domain/core/interfaces/IBaseEntity";
 import { IDeleteOperation } from "@domain/services/base/DeleteOperation";
-import { IBaseRepository } from "@gateways/repositories/base/baseRepository";
+import { IBaseRepository } from "@gateways/repositories/base/IBaseRepository";
 
 export class DeleteOperation<TEntity extends IBaseEntity> implements IDeleteOperation{
     

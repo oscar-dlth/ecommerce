@@ -1,7 +1,7 @@
 import { BaseCommand } from "@application/common/baseCommands/BaseCommand";
 import { IBaseEntity } from "@domain/core/interfaces/IBaseEntity";
 import { IUpdateOperation } from "@domain/services/base/UpdateOperation";
-import { IBaseRepository } from "@gateways/repositories/base/baseRepository";
+import { IBaseRepository } from "@gateways/repositories/base/IBaseRepository";
 
 export class UpdateOperation<TEntity extends IBaseEntity> implements IUpdateOperation{
     

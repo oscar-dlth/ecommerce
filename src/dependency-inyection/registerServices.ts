@@ -1,5 +1,5 @@
 import { TOKENS } from "@dependency-inyection/tokens";
-import { CategoryRepository } from "@infrastructure/db/mySql/repositories/categoriesRepository";
+import { CategoriesRepository } from "@infrastructure/db/mySql/repositories/categoriesRepository";
 import { ProductRepository } from "@infrastructure/db/mySql/repositories/productsRepository";
 import { UserRepository } from "@infrastructure/db/mySql/repositories/usersRepository";
 import { AuthService } from "@infrastructure/services/AuthService";
@@ -22,7 +22,7 @@ export const registerServices = (container: Container) => {
 
     container
     .bind(TOKENS.CategoryRepository)
-    .toInstance(CategoryRepository)
+    .toInstance(CategoriesRepository)
     .inSingletonScope();
   
   container
