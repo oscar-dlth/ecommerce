@@ -10,6 +10,6 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-CMD ["npm", "run build"] 
+RUN npm run build 
 
 COPY . .
