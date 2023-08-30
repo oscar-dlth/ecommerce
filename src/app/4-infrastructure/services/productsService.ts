@@ -1,7 +1,7 @@
 import { TOKENS } from "@dependency-inyection/tokens";
 import { injected } from "brandi";
 import { Product } from "@domain/entities/Product";
-import { IProductRepository } from "@gateways/repositories/productRepository";
+import { IProductRepository } from "@gateways/repositories/ProductRepository";
 import { IProductService } from "@domain/services/ProductsService";
 import { BaseCommand } from "@application/common/baseCommands/BaseCommand";
 import { IReadOperation } from "@domain/services/base/ReadOperation";

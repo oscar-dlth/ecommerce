@@ -1,5 +1,5 @@
 import { token } from 'brandi';
-import { IUserRepository } from '@gateways/repositories/userRepository';
+import { IUserRepository } from '@gateways/repositories/UserRepository';
 import { IUserService } from '@domain/services/usersService';
 import { GetUsersQuery } from '@application/users/queries/getUsers/GetUsersQuery';
 import { GetUserByIdQuery } from '@application/users/queries/getUserById/GetUserByIdQuery';
@@ -7,7 +7,7 @@ import { IAuthService } from '@domain/services/AuthService';
 import { LoginCommand } from "@application/users/commands/login/LoginCommand";
 import { UpdateUserCommand } from '@application/users/commands/updateUser/UpdateUserCommand';
 import { CreateUserCommand } from '@application/users/commands/createUser/CreateUserCommand';
-import { IProductRepository } from '@gateways/repositories/productRepository';
+import { IProductRepository } from '@gateways/repositories/ProductRepository';
 import { CreateProductCommand } from '@application/products/commands/createProduct/createProductCommand';
 import { GetProductsQuery } from '@application/products/queries/getProducts/getProductsQuery';
 import { GetProductByIdQuery } from '@application/products/queries/getProductById/getProductByIdQuery';
