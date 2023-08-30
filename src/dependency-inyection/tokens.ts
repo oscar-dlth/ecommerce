@@ -18,7 +18,7 @@ import { ICategoryRepository } from '@gateways/repositories/CategoryRepository';
 import { IProductService } from '@domain/services/ProductsService';
 
 export const TOKENS = {
-  userRepository: token<IUserRepository>('userRepository'),
+  userRepository: token<IUserRepository>('IUserRepository'),
   ProductRepository: token<IProductRepository>('ProductRepository'),
   CategoryRepository: token<ICategoryRepository>('CategoryRepository'),
   usersService: token<IUserService>('userService'),
