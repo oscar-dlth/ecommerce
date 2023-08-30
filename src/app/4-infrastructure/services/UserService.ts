@@ -70,4 +70,4 @@ export class UsersService implements IUserService {
 }
 
 
-injected(UsersService, TOKENS.userRepository, TOKENS.AuthService);
+injected(UsersService, TOKENS.UserRepository, TOKENS.AuthService);
