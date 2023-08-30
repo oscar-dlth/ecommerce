@@ -13,7 +13,9 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
-RUN npm run build && npm run tsc-alias
+CMD ["npm", "run", "build"]
+
+CMD ["npm", "run", "tsc-alias"]
 
 # Start your application
 CMD ["npm", "start"]
