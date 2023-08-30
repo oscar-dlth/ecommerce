@@ -13,5 +13,3 @@ RUN npm install
 CMD ["npm", "run build"] 
 
 COPY . .
-
-CMD ["npm", "start"]
