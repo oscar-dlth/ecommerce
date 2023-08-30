@@ -6,7 +6,7 @@ import { CategoryService } from "@infrastructure/services/CategoryService";
 import { ProductsService } from "@infrastructure/services/productsService";
 import { UsersService } from "@infrastructure/services/UserService";
 import { Container } from "brandi";
-import { UserRepository } from "@infrastructure/db/mySql/repositories/UserRepository";
+import { UsersRepository } from "@infrastructure/db/mySql/repositories/UsersRepository";
 
 export const registerServices = (container: Container) => {
   container
@@ -42,7 +42,7 @@ export const registerServices = (container: Container) => {
 
     container
     .bind(TOKENS.UserRepository)
-    .toInstance(UserRepository)
+    .toInstance(UsersRepository)
     .inSingletonScope();
 }
 
