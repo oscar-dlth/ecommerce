@@ -2,7 +2,7 @@
 FROM node:16.20.0
 
 # Set the working directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # Install dependencies
 RUN npm install
