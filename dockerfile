@@ -10,6 +10,6 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-RUN tsc && tsc-alias
+RUN build
 
 COPY . .
