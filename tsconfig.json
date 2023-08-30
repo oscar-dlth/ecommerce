@@ -35,7 +35,7 @@
       "@gateways/*": ["./src/app/3.gateways/*"],
       "@infrastructure/*": ["./src/app/4-infrastructure/*"],
       "@presentation/*": ["./src/app/5-presentation/*"],
-      "@dependency-inyection*": ["src/dependency-inyection/*"]
+      "@dependency-inyection*": ["./src/dependency-inyection/*"]
     }, 
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */
