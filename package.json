@@ -6,7 +6,7 @@
   "scripts": {
     "tsc": "tsc",
     "alias": "alias", 
-    "build": "tsc && tsc-alias",
+    "build": "tsc",
     "start": "node ./dist/index.js",
     "dev": "concurrently \"npx tsc && tsc-alias --watch\" \"nodemon -q dist/index.js\"",
     "test": "npm run build && npx jest --detectOpenHandles --silent",
