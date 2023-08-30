@@ -10,12 +10,11 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Copy the rest of the application code
-COPY . .
-
 CMD ["npm", "run", "build"]
 
 CMD ["npm", "run", "tsc-alias"]
+# Copy the rest of the application code
+COPY . .
 
 # Start your application
 CMD ["npm", "start"]
