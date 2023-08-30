@@ -1,6 +1,3 @@
-ARG custom_arg=default_value
-RUN echo "Build argument: $custom_arg"
-
 # Use the desired Node.js version
 FROM node:16.20.0
 
