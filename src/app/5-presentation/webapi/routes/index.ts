@@ -9,13 +9,13 @@ const productsRouter: Router = express.Router();
 const categoriesRouter: Router = express.Router();
 
 usersRouter
-  .post('/signup', userOperations.signIn)
-  .post('/', userOperations.createUser)
-  .post('/login', userOperations.login)
+  //.post('/signup', userOperations.signIn)
+  //.post('/', userOperations.createUser)
+  //.post('/login', userOperations.login)
   .get('', userOperations.getUsers)
   .get('/:id', userOperations.getUserById)
-  .delete('/:id', userOperations.deleteUser)
-  .put('', userOperations.updateUser);
+  //.delete('/:id', userOperations.deleteUser)
+  //.put('', userOperations.updateUser);
 
 productsRouter
   .get('/', productsOperations.getProducts);
