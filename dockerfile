@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN npm install
 
 # Copy TypeScript source files
-COPY src/ ./src/
+COPY . .
 
 # Build the TypeScript application
 RUN npm run build
