@@ -1,3 +1,6 @@
+ARG custom_arg=default_value
+RUN echo "Build argument: $custom_arg"
+
 # Use the desired Node.js version
 FROM node:16.20.0
 
@@ -13,7 +16,7 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
-CMD ["npm", " run build"]
+RUN npm run build && npm run tsc-alias
 
 # Start your application
 CMD ["npm", "start"]
