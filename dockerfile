@@ -1,3 +1,4 @@
+RUN /bin/bash
 # Use the desired Node.js version
 FROM node:16.20.0
 
@@ -9,7 +10,5 @@ COPY package*.json ./
 
 # Install dependencies
 RUN npm install
-
-RUN npm run build
 
 COPY . .
