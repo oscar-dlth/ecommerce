@@ -48,9 +48,9 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
 const getUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const query = new GetUsersQuery();
-        query.keyWord =  String(req.query.keyWord);
-        query.size =  Number(req.query.size);
-        query.page =  Number(req.query.page);
+        query.keyWord =  String(req.query.keyWord) || '';
+        query.size =  Number(req.query.size) || 0;
+        query.page =  Number(req.query.page) || 0;
         const result = await mediator.send<{rows: UserViewModel[], count: number}>(query);
         
         const responseData: ResponseViewModel<BasePagedViewModel<UserViewModel>> = {

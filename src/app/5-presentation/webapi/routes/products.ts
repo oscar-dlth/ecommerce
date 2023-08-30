@@ -16,9 +16,9 @@ const mediator =  new Mediator();
 const getProducts = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const query = new GetProductsQuery();
-        query.keyWord =  String(req.query.keyWord);
-        query.size =  Number(req.query.size);
-        query.page =  Number(req.query.page);
+        query.keyWord =  String(req.query.keyWord) || '';
+        query.size =  Number(req.query.size) || 0;
+        query.page =  Number(req.query.page) || 0;
         const result = await mediator.send<{rows: ProductViewModel[], count: number}>(query);
         
         const responseData: ResponseViewModel<BasePagedViewModel<ProductViewModel>> = {

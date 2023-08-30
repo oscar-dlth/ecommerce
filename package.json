@@ -7,7 +7,7 @@
     "build": "tsc && tsc-alias",
     "start": "npm run build && node dist/index.js",
     "dev": "concurrently \"npx tsc && tsc-alias --watch\" \"nodemon -q dist/index.js\"",
-    "test": "npm run build && npx jest --detectOpenHandles",
+    "test": "npm run build && npx jest --detectOpenHandles --silent",
     "migrate": "npx sequelize-cli db:migrate",
     "seed:all": "npx sequelize-cli db:seed:all"
   },
@@ -29,6 +29,8 @@
     "jsonwebtoken": "^8.3.0",
     "mediatr-ts": "^1.2.0",
     "mysql2": "^3.1.0",
+    "pg": "^8.11.3",
+    "pg-hstore": "^2.3.4",
     "sequelize": "^6.28.0",
     "tsc-alias": "^1.8.6",
     "typescript": "^4.7.4"
