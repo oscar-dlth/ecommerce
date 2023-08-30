@@ -10,6 +10,7 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-RUN tsc && tsc-alias
+CMD ["npm"] 
+CMD ["tsc-alias"] 
 
 COPY . .
