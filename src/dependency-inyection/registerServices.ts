@@ -2,11 +2,11 @@ import { TOKENS } from "@dependency-inyection/tokens";
 import { CategoryRepository } from "@infrastructure/db/mySql/repositories/CategoryRepository";
 import { ProductRepository } from "@infrastructure/db/mySql/repositories/ProductRepository";
 import { AuthService } from "@infrastructure/services/AuthService";
-import { UserRepository } from "@infrastructure/db/mySql/repositories/UserRepository";
 import { CategoryService } from "@infrastructure/services/CategoryService";
 import { ProductsService } from "@infrastructure/services/productsService";
 import { UsersService } from "@infrastructure/services/UserService";
 import { Container } from "brandi";
+import { UserRepository } from "@infrastructure/db/mySql/repositories/UserRepository";
 
 export const registerServices = (container: Container) => {
   container
