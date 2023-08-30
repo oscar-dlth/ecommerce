@@ -10,16 +10,16 @@ import { Container } from "brandi";
 
 export const registerServices = (container: Container) => {
 
+  
+  container
+  .bind(TOKENS.ProductRepository)
+  .toInstance(ProductRepository)
+  .inSingletonScope();
+  
   container
     .bind(TOKENS.userRepository)
     .toInstance(UserRepository)
     .inSingletonScope();
-  
-  container
-    .bind(TOKENS.ProductRepository)
-    .toInstance(ProductRepository)
-    .inSingletonScope();
-
     container
     .bind(TOKENS.CategoryRepository)
     .toInstance(CategoryRepository)
