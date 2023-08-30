@@ -4,10 +4,10 @@ import { BaseCommand } from "@application/common/baseCommands/BaseCommand";
 import { ReadOperation } from "./base/ReadOperation";
 import { CreateOperation} from "./base/CreateOperation";
 import { TOKENS } from "@dependency-inyection/tokens";
-import { ICategoryService } from "@domain/services/CategoryService";
+import { ICategoryService } from "@domain/services/ICategoryService";
 import { ICreateOperation } from "@domain/services/base/CreateOperation";
 import { IReadOperation } from "@domain/services/base/ReadOperation";
-import { ICategoryRepository } from "@gateways/repositories/CategoryRepository";
+import { ICategoryRepository } from "@gateways/repositories/ICategoryRepository";
 
 export class CategoryService implements ICategoryService {
 
