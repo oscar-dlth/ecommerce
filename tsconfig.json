@@ -30,11 +30,11 @@
     // "moduleResolution": "node",                       /* Specify how TypeScript looks up a file from a given module specifier. */
     "baseUrl": "./",                                  /* Specify the base directory to resolve non-relative module names. */
     "paths": { //* Specify a set of entries that re-map imports to additional lookup locations. */
-      "@domain/*": ["./src/app/1-domain/*"],
-      "@application/*": ["./src/app/2-application/*"],
-      "@gateways/*": ["./src/app/3.gateways/*"],
-      "@infrastructure/*": ["./src/app/4-infrastructure/*"],
-      "@presentation/*": ["./src/app/5-presentation/*"],
+      "@domain/*": ["./src/app/domain/*"],
+      "@application/*": ["./src/app/application/*"],
+      "@gateways/*": ["./src/app/gateways/*"],
+      "@infrastructure/*": ["./src/app/infrastructure/*"],
+      "@UI/*": ["./src/app/UI/*"],
       "@dependency-inyection/*": ["./src/dependency-inyection/*"]
     },
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */

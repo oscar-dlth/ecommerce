@@ -1,6 +1,6 @@
 import { initBrandiContainer } from "@dependency-inyection/initBrandiContainer";
 import db from "@infrastructure/db/mySql/sequelizer/models";
-import app from "@presentation/webapi";
+import app from "@UI/webapi";
 
 const PORT = process.env.PORT || 3000
 
