@@ -1,23 +1,10 @@
-# Clean Arquitecture Node.js
+# Clean Arquitecture Node.js + CQRS + Repository Pattern + Sequelizer
 
 ## Backend using clean arquitecture
 
-This project is a back end portfolio using Clean Arquitecture and repository pattern, this will allow us to work with diferent databases such as non sql and sql.
+This project is a back end portfolio using Clean Arquitecture.
 
-## Branch distribution
-
-The repository has a branch for each database implementation ie. [my-sql-implementation](https://github.com/oscar-dlth/movies-api/tree/my-sql-implementation).
-
-## Software layer overview
-
-This picture show the layer distribution of a clean arquitecture.
-
-![clean-arquitecure-diagram]
-
-[clean-arquitecure-diagram]: https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg
-Image by [Robert C. Martin](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
-
-</br>
+## Arquitecture layer overview.
 
 In this project the layer names will be changed as [Clean Architecture with .NET Core: Getting Started](https://jasontaylor.dev/clean-architecture-getting-started/) indicates.
 
@@ -26,46 +13,32 @@ In this project the layer names will be changed as [Clean Architecture with .NET
 [clean-arquitecture-jason]: https://miro.medium.com/max/640/0*GaN7k4lcnYOOJUUs
 
 Image By [Clean Architecture with .NET Core: Getting Started](https://jasontaylor.dev/clean-architecture-getting-started/)
+## Layers Overview
 
-<br>
+Based on [The Clean Architecture — Beginner’s Guide](https://betterprogramming.pub/the-clean-architecture-beginners-guide-e4b7058c1165) and [Clean Architecture with .NET Core: Getting Started](https://jasontaylor.dev/clean-architecture-getting-started/), i decided to use the following distribution.
 
 
-## Structure Folder
-
-Based on [The Clean Architecture — Beginner’s Guide](https://betterprogramming.pub/the-clean-architecture-beginners-guide-e4b7058c1165) and [Clean Architecture with .NET Core: Getting Started](https://jasontaylor.dev/clean-architecture-getting-started/) i decided to use this distribution.
-
-<br>
-
-### 1. Domain (Entities)
+### Domain (Entities)
 
 Enterprise Business Rules, this layer holds the <u>entities</u> and <u>enumerables</u> definition.
 
-<br>
 
 
-### 2. Application (Use Cases)
+### Application (Use Cases)
 
-Application Business Rules, this layer has Commands and Queries like  [CQRS pattern](https://martinfowler.com/bliki/CQRS.html) indicates.
-
-<br>
+Application Business Rules, this layer holds all the use cases of the application, so all the functionallities of the application are implemented here, this layer has Commands and Queries like  [CQRS pattern](https://martinfowler.com/bliki/CQRS.html) indicates. To achive this pattern i used the node package [mediatr-ts](https://www.npmjs.com/package/mediatr-ts).
 
 
-### 3. Gateways.
-Interface of all CRUD aperations in the application layer, implemented by DB. To do this operations the [Repository pattern](https://medium.com/@pererikbergman/repository-design-pattern-e28c0f3e4a30) are used.
-
-<br>
+### Gateways.
+Interface of all CRUD aperations performed by DB. To do this operations the [Repository pattern](https://medium.com/@pererikbergman/repository-design-pattern-e28c0f3e4a30) was implemented.
 
 
-### 4. Infrastructure (DB)
-Database Implementations and identity, here are the Repository Database Implementations.
-
-<br>
+### Infrastructure (DB)
+Database Implementations and identity, here are the Repository Database Implementations and Data services implementations. For database management the ORM [Sequelize](https://sequelize.org/) is used
 
 
-### 5. Presentation
-Web Api User Interface, calls the Application layer operations.
-
-<br>
+### UI
+Web Api User Interface, contains all the application routes. [Express](https://expressjs.com/) is used to perform api server calls.
 
 
 
@@ -80,15 +53,23 @@ To achive this rule is implemented [Dependency Inversion Principle](https://es.w
 ```        
 src/
 ├── app/
-│   ├── 1-domain/
+│   ├── domain/
 │   │   ├── core/
 │   │   │   ├── common/
 │   │   │   │   └── statusCodes.ts
 │   │   │   └── interfaces/
 │   │   ├── entities/
 │   │   ├── services/
+│   │   │   ├── base/
+│   │   │   │   ├── CreateOperation.ts
+│   │   │   │   ├── DeleteOperation.ts
+│   │   │   │   ├── ReadOperation.ts
+│   │   │   │   └── UpdateOperation.ts
+│   │   │   ├── IAuthService.ts
+│   │   │   ├── ICategoryService.ts
+│   │   │   └── IProductService.ts
 │   │   └── statusCodes.ts
-│   ├── 2-application/
+│   ├── application/
 │   │   ├── common/
 │   │   │   ├── errorResponseViewModel.ts
 │   │   │   └── responseViewModel.ts
@@ -109,13 +90,13 @@ src/
 │   │           ├── userCreatedViewModel.ts
 │   │           ├── userViewModel.ts
 │   │           └── ...
-│   ├── 3-gateways/
+│   ├── gateways/
 │   │   └── repositories/
 │   │       └── database/
 │   │           ├── base/
 │   │           │   └── baseRepository.ts
 │   │           └── userRepository.ts
-│   ├── 4-infrastructure/
+│   ├── infrastructure/
 │   │   ├── db/
 │   │   │   ├── mySql/
 │   │   │   │   ├── resposotories/
@@ -134,9 +115,14 @@ src/
 │   │   │   └── middleware/
 │   │   │       └── check-auth.ts
 │   │   └── services/
+│   │       ├── base/
+│   │       │   ├── CreateOperation.ts
+│   │       │   ├── DeleteOperation.ts
+│   │       │   ├── ReadOperation.ts
+│   │       │   └── UpdateOperation.ts
 │   │       ├── authServiceImp.ts
-│   │       └── usersService.ts
-│   └── 5.presentation/
+│   │       └── UserService.ts
+│   └── UI/
 │       ├── routes/
 │       │   ├── index.ts (all routes)
 │       │   ├── user.ts ( user routes implementations)
