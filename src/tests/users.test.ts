@@ -1,5 +1,5 @@
 import request from "supertest";
-import app from "@presentation/webapi";
+import app from "@UI/webapi";
 
 describe('GET users', ()=>{
     test('should return status code 200', async ()=> {
