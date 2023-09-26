@@ -94,7 +94,7 @@ const updateUser = async (req: Request, res: Response, next: NextFunction) => {
             status: 'OK',
             data: result
         };
-        res.send( responseData )
+        res.send(responseData)
     } catch ( error: any ) {
         handleError(error, next);
     }
@@ -115,7 +115,7 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
             status: 'OK',
             data: result
         };
-        res.send( {} )
+        res.send(responseData)
     } catch ( error: any ) {
         handleError(error, next);
     }
