@@ -1,7 +1,7 @@
 import express, { Router } from 'express';
 import { categoriesOperations } from './categories';
 import { productsOperations } from './products';
-import { userOperations } from './user';
+import { userOperations } from './users/user';
 import apicache  from 'apicache'
 
 let cache = apicache.middleware;
