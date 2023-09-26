@@ -29,7 +29,8 @@ app.use( (err: any, req: Request, res: Response, next: NextFunction) => {
 
   res.status(err.code).json({
     status: 'Fail',
-    message: err.message
+    message: err.message,
+    details: err.details
   })
 })
 

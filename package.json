@@ -28,6 +28,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "joi": "^17.10.2",
     "jsonwebtoken": "^8.3.0",
     "mediatr-ts": "^1.2.0",
     "mysql2": "^3.1.0",

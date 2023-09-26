@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { UserCreatedViewModel } from '@application/users/viewModels/userCreatedViewModel';
 import { UserViewModel } from '@application/users/viewModels/userViewModel';
-import { handleError } from '../utils';
+import { handleError } from '../../utils';
 import { ResponseViewModel } from '@application/common/responseViewModel';
 import { Mediator } from 'mediatr-ts';
 import { GetUsersQuery } from '@application/users/queries/getUsers/GetUsersQuery';
@@ -12,6 +12,7 @@ import { CreateUserCommand } from '@application/users/commands/createUser/Create
 import { LoginCommand } from '@application/users/commands/login/LoginCommand';
 import { LoginViewModel } from '@application/users/viewModels/LoginViewModel';
 import { BasePagedViewModel } from '@application/common/BaseViewModels/BasePagedViewModel';
+import { validateCreateUser } from './validators';
 
 const mediator =  new Mediator();
 
@@ -93,7 +94,7 @@ const updateUser = async (req: Request, res: Response, next: NextFunction) => {
             status: 'OK',
             data: result
         };
-        res.send( responseData )
+        res.send(responseData)
     } catch ( error: any ) {
         handleError(error, next);
     }
@@ -101,6 +102,8 @@ const updateUser = async (req: Request, res: Response, next: NextFunction) => {
 
 const createUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
+        validateCreateUser(req.body);
+        
         const command = new CreateUserCommand();
         command.email = req.body.email;
         command.name = req.body.name;
@@ -112,7 +115,7 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
             status: 'OK',
             data: result
         };
-        res.send( responseData )
+        res.send(responseData)
     } catch ( error: any ) {
         handleError(error, next);
     }
@@ -141,3 +144,4 @@ export const userOperations = {
     login,
     createUser
 };
+
