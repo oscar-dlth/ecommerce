@@ -110,11 +110,11 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
         command.nickName = req.body.nickName;
         command.password = req.body.password;
 
-        ////const result = await mediator.send<UserViewModel>(command);
-        //const responseData: ResponseViewModel<UserViewModel> = {
-        //    status: 'OK',
-        //    data: result
-        //};
+        const result = await mediator.send<UserViewModel>(command);
+        const responseData: ResponseViewModel<UserViewModel> = {
+            status: 'OK',
+            data: result
+        };
         res.send( {} )
     } catch ( error: any ) {
         handleError(error, next);

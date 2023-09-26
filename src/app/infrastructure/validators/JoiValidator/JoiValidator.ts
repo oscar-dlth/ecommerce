@@ -8,15 +8,15 @@ import { CustomJoiSchema } from "./CustomJoiSchema";
 export class JoiValidator implements IRequestValidator {
     private object: Joi.ObjectSchema<any>;
 
-    constructor(schema: Map<string, ValidationDefinition>) {
+    constructor(schema: any) {
 
         this.object = this.getJoiObject(schema);
     }
 
-    getJoiObject(ruleDefinition: Map<string, ValidationDefinition>){
+    getJoiObject(ruleDefinition: any){
         const joiSchena: Joi.PartialSchemaMap<any> = {};
         
-        ruleDefinition.forEach((value: ValidationDefinition, key: string)=> {
+        Object.entries(ruleDefinition).forEach(([key, value]: any)=>{
             let schema =  this.getSchema(value.dataType);
 
             if(!schema){
