@@ -4,7 +4,7 @@ import { ProductRepository } from "@infrastructure/db/mySql/repositories/product
 import { UserRepository } from "@infrastructure/db/mySql/repositories/usersRepository";
 import { AuthService } from "@infrastructure/services/AuthService";
 import { CategoryService } from "@infrastructure/services/CategoryService";
-import { ProductsService } from "@infrastructure/services/productsService";
+import { ProductsService } from "@infrastructure/services/ProductsService";
 import { UsersService } from "@infrastructure/services/UserService";
 import { Container } from "brandi";
 

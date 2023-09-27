@@ -16,6 +16,10 @@ import { ICategoryService } from '@domain/services/ICategoryService';
 import { GetCategoriesQuery } from '@application/categories/queries/getCategories/getCategoriesQuery';
 import { ICategoryRepository } from '@gateways/repositories/ICategoryRepository';
 import { IProductService } from '@domain/services/IProductService';
+import { DeleteProductCommand } from '@application/products/commands/deleteProduct/deleteProductCommand';
+import { GetCategoryByIdQuery } from '@application/categories/queries/getCategoryById/GetCategoryByIdQuery';
+import { CreateCategoryCommand } from '@application/categories/commands/CreateCategory/CreateCategoryCommand';
+import { DeleteCategoryCommand } from '@application/categories/commands/DeleteCategory/DeleteCategoryCommand';
 
 export const TOKENS = {
   userRepository: token<IUserRepository>('userRepository'),
@@ -38,11 +42,16 @@ export const UserCommandTokens = {
 export const ProductCommandTokens = {
   UpdateProductCommand: token<UpdateProductCommand>('UpdateProductCommand'),
   CreateProductCommand: token<CreateProductCommand>('CreateProductCommand'),
+  DeleteProductCommand: token<DeleteProductCommand>('DeleteProductCommand'),
   GetProductsQuery: token<GetProductsQuery>('GetProductsQuery'),
   GetProductByIdQuery: token<GetProductByIdQuery>('GetProductByIdQuery'),
 }
 
-export const CategoriesCommandTokens = {
+export const CategoryCommandTokens = {
   GetCategoriesQuery: token<GetCategoriesQuery>('GetCategoriesQuery'),
+  GetCategoryByIdQuery: token<GetCategoryByIdQuery>('GetCategoryByIdQuery'),
+  CreateCategoryCommand: token<CreateCategoryCommand>('CreateCategoryCommand'),
+  UpdateCategoryCommand: token<CreateCategoryCommand>('UpdtaeCategoryCommand'),
+  DeleteCategoryCommand: token<DeleteCategoryCommand>('DeleteCategoryCommand'),
 }
 
