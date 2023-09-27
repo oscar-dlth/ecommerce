@@ -20,14 +20,19 @@ import { DeleteProductCommand } from '@application/products/commands/deleteProdu
 import { GetCategoryByIdQuery } from '@application/categories/queries/getCategoryById/GetCategoryByIdQuery';
 import { CreateCategoryCommand } from '@application/categories/commands/CreateCategory/CreateCategoryCommand';
 import { DeleteCategoryCommand } from '@application/categories/commands/DeleteCategory/DeleteCategoryCommand';
+import { IBrandService } from '@domain/services/IBrandService';
+import { IBrandRepository } from '@gateways/repositories/IBrandRepository';
+import { GetBrandsQuery } from '@application/Brands/Queries/GetBrands/GetBrandsQuery';
 
 export const TOKENS = {
   userRepository: token<IUserRepository>('userRepository'),
+  BrandRepository: token<IBrandRepository>('brandRepository'),
   ProductRepository: token<IProductRepository>('ProductRepository'),
   CategoryRepository: token<ICategoryRepository>('CategoryRepository'),
   usersService: token<IUserService>('userService'),
   productsService: token<IProductService>('productsService'),
   categoryService: token<ICategoryService>('categoryService'),
+  BrandService: token<IBrandService>('BrandService'),
   AuthService: token<IAuthService>('IAuthService')
 };
 
@@ -53,5 +58,9 @@ export const CategoryCommandTokens = {
   CreateCategoryCommand: token<CreateCategoryCommand>('CreateCategoryCommand'),
   UpdateCategoryCommand: token<CreateCategoryCommand>('UpdtaeCategoryCommand'),
   DeleteCategoryCommand: token<DeleteCategoryCommand>('DeleteCategoryCommand'),
+}
+
+export const BrandsCommandTokens = {
+  GetBrandsQuery: token<GetBrandsQuery>('GetBrandsQuery'),
 }
 

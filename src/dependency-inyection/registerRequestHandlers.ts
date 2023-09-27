@@ -1,3 +1,4 @@
+import { GetBrandsQueryHandler } from "@application/Brands/Queries/GetBrands/GetBrandsQueryHandler";
 import { DeleteCategoryCommandHandler } from "@application/categories/commands/DeleteCategory/DeleteCategoryCommandHandler";
 import { UpdateCategoryCommandHandler } from "@application/categories/commands/UpdateCategory/UpdateCategoryCommandHandler";
 import { GetCategoriesQueryHandler } from "@application/categories/queries/getCategories/getCategoriesQueryHandler";
@@ -8,7 +9,7 @@ import { LoginCommandHandler } from "@application/users/commands/login/LoginComm
 import { UpdateUserCommandHandler } from "@application/users/commands/updateUser/UpdateUserCommandHandler";
 import { GetUserByIdQueryHandler } from "@application/users/queries/getUserById/GetUserByIdQueryHandler";
 import { GetUsersQueryHandler } from "@application/users/queries/getUsers/GetUsersQueryHandler";
-import { UserCommandTokens, ProductCommandTokens, CategoryCommandTokens } from "@dependency-inyection/tokens";
+import { UserCommandTokens, ProductCommandTokens, CategoryCommandTokens, BrandsCommandTokens } from "@dependency-inyection/tokens";
 import { Container } from "brandi";
 
 export const registerRequestHandlers = (container: Container) => {
@@ -28,4 +29,6 @@ export const registerRequestHandlers = (container: Container) => {
     container.bind(CategoryCommandTokens.UpdateCategoryCommand).toInstance(<any>UpdateCategoryCommandHandler).inSingletonScope();
     container.bind(CategoryCommandTokens.CreateCategoryCommand).toInstance(<any>CreateUserCommandHandler).inSingletonScope();
     container.bind(CategoryCommandTokens.DeleteCategoryCommand).toInstance(<any>DeleteCategoryCommandHandler).inSingletonScope();
+    //Brands
+    container.bind(BrandsCommandTokens.GetBrandsQuery).toInstance(<any>GetBrandsQueryHandler).inSingletonScope();
 };
