@@ -7,7 +7,7 @@ import { TOKENS } from "@dependency-inyection/tokens";
 @requestHandler(CreateProductCommand)
 export class CreateUserCommandHandler implements IRequestHandler<CreateProductCommand, ProductViewModel>{
     handle(command: CreateProductCommand): Promise<ProductViewModel> {
-        const userService = container.get(TOKENS.productsService);
-        return userService.insert(command);
+        const productsService = container.get(TOKENS.productsService);
+        return productsService.insert(command);
     }
 }

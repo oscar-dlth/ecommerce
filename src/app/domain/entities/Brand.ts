@@ -4,5 +4,5 @@ export class Brand implements IBaseEntity {
     id: number;
     code: string;
     name: string;
-    description: number;
+    description: string;
 }
